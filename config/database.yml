@@ -26,11 +26,11 @@ development:
 #   username: postgres
 #   password:
 
-# production:
-#   adapter: postgresql
-#   encoding: unicode
-#   host: localhost
-#   database: wonyoungso_production
-#   pool: 5
-#   username: postgres
-#   password: yourse1234f
+production:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: isopt_production
+  pool: 5
+  username: postgres
+  password: asdfghjkl;'
