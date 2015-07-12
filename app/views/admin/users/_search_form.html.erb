@@ -1,0 +1,7 @@
+<%= form_tag search_admin_users_path, :method => :get, :class => 'form-inline' do |f| %>
+  <div class="form-group">
+    <%= text_field_tag :query, '', :class => 'form-control', :style => 'width: 400px', :placeholder => "Name, Email, Device ID" %>
+  </div>
+  <%= submit_tag "Search", :class => 'btn btn-primary' %>
+<% end %>
+<div class="l-apple_box"></div>

@@ -1,0 +1,23 @@
+<h2>
+  JOIN
+</h2>
+
+<%= form_for @user, :class => 'form-horizontal' do |f|  %>  
+  <div>
+    <%= f.text_field :fullname, :placeholder => 'Fullname' %>
+  </div>
+  <div>
+    <%= f.text_field :email, :placeholder => 'Email', :class => 'text_field email_field', data: {field: 'email'} %>
+  </div>
+  <div>
+    <%= f.text_field :device_id, :placeholder => 'Device ID', :class => 'text_field' %>
+  </div>
+  <div>
+    <%= f.password_field :password, :placeholder => 'Password', data: {field: 'password'} %>
+  </div>
+  <div>
+    <%= f.password_field :password_confirmation, :placeholder => 'Confirm password', data: {field: 'password_confirmation' } %>
+  </div>
+
+  <%= submit_tag "CREATE ACCOUNT", :class => 'btn' %>
+<% end %>

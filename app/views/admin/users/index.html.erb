@@ -1,0 +1,39 @@
+<%= render 'tab' %>
+<h3> 
+  <%= @title %>
+</h3>
+
+<%= render 'search_form' %>
+<div style="height:50px"></div>
+<table class="table table-striped">
+  <tr>
+    <th>
+      #
+    </th>
+    <th>
+      Email
+    </th>
+
+    <th>
+      Fullname
+    </th>
+
+    <th>
+      Device ID
+    </th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= link_to user.email, edit_admin_user_path(user) %></td>
+
+    <td>
+      <%= user.fullname %> 
+    </td>
+
+    <td>
+      <%= user.device_id %>
+    </td>
+  </tr>
+  <% end %>
+</table>

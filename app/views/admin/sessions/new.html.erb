@@ -1,0 +1,34 @@
+<h3>
+  Administrator Sign in
+</h3>
+
+<%= form_tag admin_login_path, :class => 'form-horizontal', :id => 'login_form' do %>
+  <div class="control-groups">
+    <%= label_tag :email, 'Email', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :email, params[:email], :placeholder => 'Email' %>
+      <% if @valid_data.present? and @valid_data[:type] == 'login_error' %>
+        <div class="valid_error" id="email_error">
+          <%= @valid_data[:message] %>
+        </div>
+      <% end %>
+    </div> 
+
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :password, 'Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= password_field_tag :password, params[:password], :placeholder => 'Password' %>
+      <% if @valid_data.present? and @valid_data[:type] == 'pw_error' %>
+        <div class="valid_error" id="pw_error">
+          <%= @valid_data[:message] %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+<div class="form-actions">
+  <%= submit_tag "Sign in", :class => 'btn btn-primary' %>
+</div>
+<% end %>

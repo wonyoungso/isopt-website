@@ -1,0 +1,30 @@
+<%= form_for [:admin, @user], :html => {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :fullname, 'Fullname', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :fullname, :class => 'form-control', :placeholder => 'Fullname' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, 'Email', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :email, :class => 'form-control', :placeholder => 'Email' %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :device_id, 'Device ID', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :device_id, :class => 'form-control', :placeholder => 'Device ID' %>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
