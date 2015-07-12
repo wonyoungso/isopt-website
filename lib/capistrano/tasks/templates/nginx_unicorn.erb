@@ -1,12 +1,12 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.thethings.kr.sock fail_timeout=0;
+  server unix:/tmp/unicorn.isopt.sock fail_timeout=0;
 }
 
 server {
   listen 80;
 
-  server_name thethings.kr;
-  root /home/deployer/thethings.kr/current/public;
+  server_name isopt.wonyoung.so;
+  root /home/deployer/isopt-website/current/public;
 
 
   location ^~ /assets/ {
