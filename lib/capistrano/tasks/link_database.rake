@@ -5,6 +5,7 @@ namespace :db_s3_yml do
     on roles(:web) do 
       execute "mkdir -p /home/#{fetch(:user)}/#{fetch(:application)}/shared/config"
       upload! "/Users/WonyoungSo/Desktop/isopt_website/config/database.yml", "/home/#{fetch(:user)}/#{fetch(:application)}/shared/config/database.yml"
+      upload! "/Users/WonyoungSo/Desktop/isopt_website/config/secrets.yml", "/home/#{fetch(:user)}/#{fetch(:application)}/shared/config/secrets.yml"
       # template "unicorn_init.erb", "/tmp/unicorn_init"
       # execute "chmod +x /tmp/unicorn_init"
       # execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}"

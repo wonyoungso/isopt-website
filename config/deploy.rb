@@ -16,7 +16,7 @@ set :rbenv_roles, :web # default value
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 # 
-set :linked_files, %w{config/database.yml}# pids/unicorn.pid}
+set :linked_files, %w{config/database.yml config/secrets.yml}# pids/unicorn.pid}
 
 set :user, "deployer"
 set :deploy_user, "deployer"
