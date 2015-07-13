@@ -1,4 +1,4 @@
-set :application, "thethings.kr"
+set :application, "isopt.wonyoung.so"
 set :user, "deployer"
 
 set :unicorn_user, "deployer"
