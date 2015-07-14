@@ -4,7 +4,10 @@
 
 <%= form_for @user, :class => 'form-horizontal' do |f|  %>  
   <div>
-    <%= f.text_field :fullname, :placeholder => 'Fullname' %>
+    <%= f.text_field :first_name, :placeholder => 'First Name' %>
+  </div>
+  <div>
+    <%= f.text_field :last_name, :placeholder => 'Last Name' %>
   </div>
   <div>
     <%= f.text_field :email, :placeholder => 'Email', :class => 'text_field email_field', data: {field: 'email'} %>

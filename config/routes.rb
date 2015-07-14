@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   match 'logout' => 'sessions#destroy', :via => :get
   match 'logout' => 'sessions#destroy', :via => :delete
 
+  namespace :api do 
+    resources :users do
+      member do 
+        post 'init_device'
+        post 'press_btn'
+      end
+    end
+  end
 
   namespace :admin do 
     resources :users do 

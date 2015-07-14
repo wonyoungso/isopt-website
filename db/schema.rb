@@ -11,19 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712001211) do
+ActiveRecord::Schema.define(version: 20150714224442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_isopts", force: :cascade do |t|
+    t.datetime "held_at"
+    t.string   "venue_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "minute_records", force: :cascade do |t|
+    t.integer  "milliseconds"
+    t.datetime "submitted_at"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "admin"
     t.string   "device_id"
-    t.string   "fullname"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "init_time"
+    t.boolean  "is_initialized",  default: false
+    t.datetime "init_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "event_isopt_id"
   end
 
 end

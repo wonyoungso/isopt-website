@@ -8,6 +8,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+
+    if @user.is_initialized?
+      render :template => 'show'
+    else
+      render :template => 'not_ready'
+    end
+
   end
 
   def edit

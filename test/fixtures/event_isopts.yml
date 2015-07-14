@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  held_at: 2015-07-14 18:28:33
+  venue_name: MyString
+
+two:
+  held_at: 2015-07-14 18:28:33
+  venue_name: MyString
