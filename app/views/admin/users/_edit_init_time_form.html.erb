@@ -1,0 +1,13 @@
+<%= form_for [:update_init_time, :admin, @user], :html => {:class => 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :init_time, 'Initialization Time(ms)', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :init_time, :class => 'form-control', :placeholder => 'Initialization Time' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

@@ -10,9 +10,9 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
 
     if @user.is_initialized?
-      render :template => 'show'
+      render :template => '/users/show'
     else
-      render :template => 'not_ready'
+      render :template => '/users/not_ready'
     end
 
   end
@@ -42,13 +42,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:email, :device_id, :first_name, :last_name, :event_isopt_id, :password, :password_confirmation))
+    @user = User.new(params.require(:user).permit(:email, :device_id, :first_name, :last_name, :username, :event_isopt_id, :password, :password_confirmation))
 
     if @user.save
       session[:user_id] = @user.id
     else  
-      # byebug
-      render '/sessions/new', layout: 'application'
+      render :new
     end
   end
 

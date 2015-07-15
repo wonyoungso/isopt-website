@@ -13,9 +13,16 @@
     <th>
       Email
     </th>
+    <th>
+      Initialized
+    </th>
 
     <th>
       Full Name
+    </th>
+
+    <th>
+      Username
     </th>
 
     <th>
@@ -29,11 +36,15 @@
   <tr>
     <td><%= user.id %></td>
     <td><%= link_to user.email, edit_admin_user_path(user) %></td>
-
+    <td>
+      <%= 'v' if user.is_initialized? %>
+    </td>
     <td>
       <%= user.fullname %> 
     </td>
-
+    <td>
+      <%= user.username %>
+    </td>
     <td>
       <%= user.device_id %>
     </td>

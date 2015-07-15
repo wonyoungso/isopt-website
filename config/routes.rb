@@ -22,6 +22,10 @@ Rails.application.routes.draw do
         get 'search'
         get 'event_isopt'
       end
+
+      member do 
+        patch 'update_init_time'
+      end
     end
 
     match 'login' => 'sessions#new', :via => :get

@@ -5,8 +5,9 @@ class Api::MinuteRecordsController < ApplicationController
     @minute_record = MinuteRecord.new
     @minute_record.user = @user
     @minute_record.submitted_at = DateTime.now
+    @minute_record.milliseconds = params[:milliseconds]
 
-    if @minute_record.save(params.require(:minute_record).permit(:milliseconds))
+    if @minute_record.save
       render json: {success: true, message: "Successfully created minute record." }, status: 200
     else
       render json: {success: false, message: "Error occured.", errors: @user.errors.messages }, status: 500

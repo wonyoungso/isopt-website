@@ -1,6 +1,28 @@
 <div>
   <%= @user.fullname %>
 </div>
-<div>
-  device id: <%= @user.device_id %>
+<div class="is_print">
+  1min = <%= @user.init_time / 1000 %>sec
 </div>
+<% if logged_in? and @user == current_user %>
+  <%= link_to '•', 'javascript:void(0);', class: 'moment_btn', style: 'font-size:10.0em;text-decoration:none' %>
+<% end %>
+
+<div class="bar_area">
+<% @user.minute_records.each do |mr| %>
+  <div class="bar_container">
+    <div class="fl"><%= mr.submitted_at.strftime("%H:%M") %></div>
+    <div class="fl bar" style="width: <%= mr.milliseconds / 10 %>px">
+    </div>
+    <br class="clearing" />
+  </div>
+<% end %>
+</div>
+
+<script>
+  $(document).ready(function(e){
+    WY.views.user_show_view({
+      user_id: <%= @user.id %>
+    });
+  });
+</script>

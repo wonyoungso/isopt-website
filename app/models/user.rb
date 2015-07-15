@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   belongs_to :event_isopt
   has_many :minute_records
   attr_accessor :updating_password
-  
+  validates :username, presence: {message: "Please enter a username"},
+                       uniqueness: {message: "This username already exists"}
+
   validates :email, presence: {message: "Please enter an email address"},
                     uniqueness: {message: "This email address already exists"},
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, message: "Please enter a valid email address"}
@@ -34,7 +36,7 @@ class User < ActiveRecord::Base
 
   def init_time_must_be_in_range 
     if self.init_time.present?
-      unless self.init_time > 30000 and self.init_time < 90000
+      unless self.init_time >= 30000 and self.init_time <= 90000
         errors.add(:init_time, "must be ranged from 30000ms and 90000ms")
       end
     end

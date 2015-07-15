@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::AdminController
   def search
     @title = "Search Results of #{params[:query]}"
     @page = params[:page] || 1
-    @users = User.where("email LIKE ? OR fullname LIKE ? OR device_id LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+    @users = User.where("username LIKE ? OR email LIKE ? OR fullname LIKE ? OR device_id LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
     render template: '/admin/users/index'
   end
 
@@ -47,10 +47,28 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find params[:id]
     
     
-    if @user.update_attributes(params.require(:user).permit(:email, :device_id, :first_name, :last_name, :event_isopt_id))
+    if @user.update_attributes(params.require(:user).permit(:email, :username, :device_id, :first_name, :last_name, :event_isopt_id))
       # @user.update_column(:subscribed_at, DateTime.now)
 
       flash[:notice] = 'Successfully updated.'
+      render :edit
+    else
+      flash[:alert] = "#{@user.errors.full_messages.join(' ')}"
+      redirect_to request.referer
+    end
+
+  end
+
+  def update_init_time
+    @user = User.find params[:id]
+    
+    @user.init_time = params[:user][:init_time]
+    @user.is_initialized = true
+    @user.init_at = DateTime.now
+
+
+    if @user.save
+      flash[:notice] = 'Successfully updated init_time.'
       render :edit
     else
       flash[:alert] = "#{@user.errors.full_messages.join(' ')}"
