@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def personal_current_time
-    Time.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
+    Time.zone.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
   end
 
   def should_validate_password?
