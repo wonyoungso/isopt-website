@@ -15,5 +15,4 @@
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
 //= require WY.js
-//= require_directory ./models
 //= require_directory ./views
