@@ -20,16 +20,16 @@
           Delete
         </th>
       </tr>
-      <% @minute_records.each do |mr| %>
+      <% @minute_records.each do |minute_record| %>
       <tr>
-        <td><%= link_to mr.id, edit_admin_user_minute_record_path(@user, minute_record) %></td>
-        <td><%= mr.milliseconds %></td>
+        <td><%= link_to minute_record.id, edit_admin_user_minute_record_path(@user, minute_record) %></td>
+        <td><%= minute_record.milliseconds %></td>
         <td>
-          <%= mr.submitted_at.strftime("%Y/%m/%d %H:%M:%s") %> 
+          <%= minute_record.submitted_at.strftime("%Y/%m/%d %H:%M:%s") %> 
         </td>
 
         <td>
-          <%= link_to admin_user_minute_record_path(@user, minute_record), :method => :delete, :confirm => 'are you sure?' %>
+          <%= link_to "delete", admin_user_minute_record_path(@user, minute_record), :method => :delete, :confirm => 'are you sure?' %>
         </td>
       </tr>
       <% end %>
