@@ -15,11 +15,14 @@
     </th>
 
     <th>
-      Fullname
+      Full Name
     </th>
 
     <th>
       Device ID
+    </th>
+    <th>
+      Event Date
     </th>
   </tr>
   <% @users.each do |user| %>
@@ -33,6 +36,9 @@
 
     <td>
       <%= user.device_id %>
+    </td>
+    <td>
+      <%= user.event_isopt.held_at.try("strftime", "%Y/%m/%d") if user.event_isopt.present? %>
     </td>
   </tr>
   <% end %>

@@ -1,0 +1,34 @@
+<%= render 'tab' %>
+<h3> 
+  Events
+</h3>
+<table class="table table-striped">
+  <tr>
+    <th>
+      #
+    </th>
+    <th>
+      Event Date
+    </th>
+
+    <th>
+      Event Venue
+    </th>
+  </tr>
+  <% @event_isopts.each do |event_isopt| %>
+  <tr>
+    <td><%= event_isopt.id %></td>
+    <td>
+      <%= link_to edit_admin_event_isopt_path(event_isopt) do %>
+        <%= event_isopt.held_at.try("strftime", "%Y/%m/%d") %>
+      <% end %>
+    </td>
+
+    <td>
+      <%= event_isopt.venue_name %> 
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Event', new_admin_event_isopt_path, class: 'btn btn-primary' %>

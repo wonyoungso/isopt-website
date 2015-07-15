@@ -7,6 +7,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li <%= 'class=active' if params[:controller] == 'admin/event_isopts'  %>>
+          <%= link_to "Events(#{EventIsopt.count})", admin_event_isopts_path %>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav">
         <li <%= 'class=active' if params[:controller] == 'admin/users'  %>>
           <%= link_to "Users(#{User.count})", admin_users_path %>
         </li>

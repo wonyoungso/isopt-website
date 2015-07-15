@@ -28,6 +28,15 @@
     </div>
   </div>
 
+
+
+  <div class="form-group">
+    <%= f.label :event_isopt_id, 'Event Date', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.select :event_isopt_id, EventIsopt.all.map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
       <%= f.submit 'Save', :class => 'btn btn-primary' %>

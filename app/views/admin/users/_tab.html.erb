@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li <%= 'class=active' if params[:action] == 'index' and params[:controller] == 'admin/users' %>>
+    <%= link_to "All Users(#{User.count})", admin_users_path %>
+  </li>
+
+  <% EventIsopt.all.each do |ev| %>
+  <li <%= 'class=active' if params[:event_isopt_id].to_i == ev.id %>>
+    <%= link_to "Users of #{ev.held_at.strftime("%Y/%m/%d")} (#{ev.users.count})", event_isopt_admin_users_path(:event_isopt_id => ev.id) %>
+  </li>
+  <% end %>
+  
+  <% if @user.present? and not @user.new_record? %>
+  <li class="active">
+    <%= link_to "#{@user.fullname}", edit_admin_user_path(@user) %>
+  </li>
+  <% end %>
+</ul>

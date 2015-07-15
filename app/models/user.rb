@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   belongs_to :event_isopt
   has_many :minute_records
+  attr_accessor :updating_password
   
   validates :email, presence: {message: "Please enter an email address"},
                     uniqueness: {message: "This email address already exists"},
@@ -20,15 +21,22 @@ class User < ActiveRecord::Base
                         uniqueness: {scope: [:event_isopt_id], message: 'This device id is already exists.' }
 
   validates :event_isopt_id, presence: {message: 'Please choose an event date.' }
-  validates :init_time_must_be_in_range  
+  validate :init_time_must_be_in_range  
 
   def fullname
     "#{self.first_name} #{self.last_name}"
   end
 
+
+  def should_validate_password?
+    updating_password || new_record?
+  end
+
   def init_time_must_be_in_range 
-    unless init_time > 30000 and init_time < 90000
-      errors.add(:init_time, "must be ranged from 30000ms and 90000ms")
+    if self.init_time.present?
+      unless self.init_time > 30000 and self.init_time < 90000
+        errors.add(:init_time, "must be ranged from 30000ms and 90000ms")
+      end
     end
   end
 

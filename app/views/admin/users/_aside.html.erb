@@ -1,0 +1,5 @@
+<ul class="nav nav-pills nav-stacked">
+  <li <%= 'class=active' if params[:controller] == 'admin/minute_records' %>>
+    <%= link_to "Minute Records(#{@user.minute_records.count})", admin_user_minute_records_path(@user) %>
+  </li>
+</ul>

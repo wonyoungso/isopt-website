@@ -1,0 +1,13 @@
+<%= render 'tab' %>
+
+<h3>
+  Edit Event
+</h3>
+<div class="row">
+  <div class="col-md-8">
+    <%= render 'form' %>
+    <%= link_to "Delete", admin_event_isopt_path(@event_isopt), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

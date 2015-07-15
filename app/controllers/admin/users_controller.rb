@@ -27,6 +27,14 @@ class Admin::UsersController < Admin::AdminController
     @users = User.order("created_at DESC")
   end
 
+  def event_isopt
+    @ev = EventIsopt.find params[:event_isopt_id]
+    @title = "Users of #{@ev.held_at.strftime("%Y/%m/%d")}"
+    @users = User.order("created_at DESC")
+
+    render template: '/admin/users/index'
+  end
+
   def new
     @user = User.new
   end
@@ -39,11 +47,11 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find params[:id]
     
     
-    if @user.update_attributes(params.require(:user).permit(:email, :device_id, :fullname))
+    if @user.update_attributes(params.require(:user).permit(:email, :device_id, :first_name, :last_name, :event_isopt_id))
       # @user.update_column(:subscribed_at, DateTime.now)
 
       flash[:notice] = 'Successfully updated.'
-      redirect_to request.referer
+      render :edit
     else
       flash[:alert] = "#{@user.errors.full_messages.join(' ')}"
       redirect_to request.referer
@@ -54,7 +62,7 @@ class Admin::UsersController < Admin::AdminController
 
   def destroy
     @user= User.find params[:id]
-    # @user.destroy
+    @user.destroy
     redirect_to admin_users_path, :notice => 'Successfully destroyed'
   end
 

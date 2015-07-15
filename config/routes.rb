@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     resources :users do
+      resources :minute_records
       member do 
         post 'init_device'
         post 'press_btn'
@@ -14,9 +15,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do 
+    resources :event_isopts
     resources :users do 
+      resources :minute_records
       collection do 
         get 'search'
+        get 'event_isopt'
       end
     end
 
