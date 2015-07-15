@@ -29,6 +29,17 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def pst_ratio
+    if self.init_time.present?
+      60000 / self.init_time
+    else
+      nil
+    end
+  end
+
+  def personal_current_time
+    Time.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
+  end
 
   def should_validate_password?
     updating_password || new_record?

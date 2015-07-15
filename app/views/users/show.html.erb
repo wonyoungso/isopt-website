@@ -4,6 +4,11 @@
 <div class="is_print">
   1min = <%= @user.init_time / 1000 %>sec
 </div>
+
+<div>
+  <%= @user.personal_current_time.strftime("%Y/%m/%d %H:%M:%S") %>
+</div>
+
 <% if logged_in? and @user == current_user %>
   <%= link_to '•', 'javascript:void(0);', class: 'moment_btn', style: 'font-size:10.0em;text-decoration:none' %>
 <% end %>
