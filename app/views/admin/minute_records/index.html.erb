@@ -22,7 +22,7 @@
       </tr>
       <% @minute_records.each do |mr| %>
       <tr>
-        <td><%= link_to mr.id, edit_admin_user_minute_record_path(user, minute_record) %></td>
+        <td><%= link_to mr.id, edit_admin_user_minute_record_path(@user, minute_record) %></td>
         <td><%= mr.milliseconds %></td>
         <td>
           <%= mr.submitted_at.strftime("%Y/%m/%d %H:%M:%s") %> 
