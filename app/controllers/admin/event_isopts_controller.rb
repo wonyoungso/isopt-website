@@ -11,7 +11,7 @@ class Admin::EventIsoptsController < Admin::AdminController
       ev.save
     end
 
-    redirect_to request.referer, :notice => 'Successfully Deactivated.'
+    redirect_to request.referer, :notice => 'Successfully Activated.'
   end
 
   def deactivate
