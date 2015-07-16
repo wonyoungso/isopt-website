@@ -30,7 +30,7 @@ class Admin::UsersController < Admin::AdminController
   def event_isopt
     @ev = EventIsopt.find params[:event_isopt_id]
     @title = "Users of #{@ev.held_at.strftime("%Y/%m/%d")}"
-    @users = User.order("created_at DESC")
+    @users = @ev.users
 
     render template: '/admin/users/index'
   end
@@ -47,7 +47,7 @@ class Admin::UsersController < Admin::AdminController
     @user = User.find params[:id]
     
     
-    if @user.update_attributes(params.require(:user).permit(:email, :username, :device_id, :first_name, :last_name, :event_isopt_id))
+    if @user.update_attributes(params.require(:user).permit(:email, :username, :first_name, :last_name))
       # @user.update_column(:subscribed_at, DateTime.now)
 
       flash[:notice] = 'Successfully updated.'

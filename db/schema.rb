@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715004354) do
+ActiveRecord::Schema.define(version: 20150716025607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "devices", force: :cascade do |t|
+    t.string   "human_id"
+    t.string   "sim_card_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "event_isopts", force: :cascade do |t|
     t.datetime "held_at"
     t.string   "venue_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "is_activated", default: false
   end
 
   create_table "minute_records", force: :cascade do |t|
@@ -31,11 +39,18 @@ ActiveRecord::Schema.define(version: 20150715004354) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "user_devices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "device_id"
+    t.integer  "event_isopt_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "admin"
-    t.string   "device_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "init_time"
@@ -43,7 +58,6 @@ ActiveRecord::Schema.define(version: 20150715004354) do
     t.datetime "init_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "event_isopt_id"
     t.string   "username"
   end
 

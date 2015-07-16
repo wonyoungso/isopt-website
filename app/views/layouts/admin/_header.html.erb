@@ -17,6 +17,13 @@
           <%= link_to "Users(#{User.count})", admin_users_path %>
         </li>
       </ul>
+
+
+      <ul class="nav navbar-nav">
+        <li <%= 'class=active' if params[:controller] == 'admin/devices'  %>>
+          <%= link_to "Device(#{Device.count})", admin_devices_path %>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <%= link_to 'Sign out', admin_logout_path, method: :delete %>

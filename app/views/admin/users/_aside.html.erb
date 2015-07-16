@@ -2,4 +2,7 @@
   <li <%= 'class=active' if params[:controller] == 'admin/minute_records' %>>
     <%= link_to "Minute Records(#{@user.minute_records.count})", admin_user_minute_records_path(@user) %>
   </li>
+  <li <%= 'class=active' if params[:controller] == 'admin/user_devices' %>>
+    <%= link_to "Assign an event and a device(#{@user.user_devices.count})", admin_user_user_devices_path(@user) %>
+  </li>
 </ul>

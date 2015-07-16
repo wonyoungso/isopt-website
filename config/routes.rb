@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   match 'logout' => 'sessions#destroy', :via => :delete
 
   namespace :api do 
+    resources :user_devices
     resources :users do
       resources :minute_records
       member do 
@@ -15,8 +16,17 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do 
-    resources :event_isopts
+    resources :devices
+    
+    resources :event_isopts do
+      member do 
+        post 'activate'
+        post 'deactivate' 
+      end
+    end
+
     resources :users do 
+      resources :user_devices
       resources :minute_records
       collection do 
         get 'search'

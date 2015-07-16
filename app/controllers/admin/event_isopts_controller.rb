@@ -2,6 +2,27 @@ class Admin::EventIsoptsController < Admin::AdminController
   def index
     @event_isopts = EventIsopt.all
   end
+  
+  def activate
+    @event_isopt = EventIsopt.find params[:id]
+
+    EventIsopt.all.each do |ev|
+      ev.is_activated = @event_isopt.id.to_i == ev.id.to_i
+      ev.save
+    end
+
+    redirect_to request.referer, :notice => 'Successfully Deactivated.'
+  end
+
+  def deactivate
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_activated = false
+    if @event_isopt.save
+      redirect_to request.referer, :notice => 'Successfully Deactivated.'
+    else
+      redirect_to request.referer, :alert => 'Error occured.'
+    end
+  end
 
   def new
     @event_isopt = EventIsopt.new

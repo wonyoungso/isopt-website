@@ -31,6 +31,9 @@
     <th>
       Event Date
     </th>
+    <th>
+      Allocated ID
+    </th>
   </tr>
   <% @users.each do |user| %>
   <tr>
@@ -46,10 +49,19 @@
       <%= user.username %>
     </td>
     <td>
-      <%= user.device_id %>
+      <% if user.devices.count > 0 %>
+      <%= user.devices.first.id %>
+      <% end %>
     </td>
     <td>
-      <%= user.event_isopt.held_at.try("strftime", "%Y/%m/%d") if user.event_isopt.present? %>
+      <% if user.event_isopts.count > 0 %>
+      <%= user.event_isopts.first.held_at.try("strftime", "%Y/%m/%d") %>
+      <% end %>
+    </td>
+    <td>
+      <% if user.user_devices.count > 0 %>
+        <%= link_to user.user_devices.first.id, api_user_device_path(user.user_devices.first), target: '_blank' %>
+      <% end %>
     </td>
   </tr>
   <% end %>

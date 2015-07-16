@@ -14,6 +14,9 @@
     <th>
       Event Venue
     </th>
+    <th>
+      Activate
+    </th>
   </tr>
   <% @event_isopts.each do |event_isopt| %>
   <tr>
@@ -26,6 +29,13 @@
 
     <td>
       <%= event_isopt.venue_name %> 
+    </td>
+    <td>
+      <% if event_isopt.is_activated? %>
+        <%= link_to 'Activated', deactivate_admin_event_isopt_path(event_isopt), method: :post, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'Deactivated', activate_admin_event_isopt_path(event_isopt), method: :post, class: 'btn btn-default' %>
+      <% end %>
     </td>
   </tr>
   <% end %>

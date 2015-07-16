@@ -1,0 +1,16 @@
+<%= render '/admin/users/tab' %>
+
+<h3>
+  Allocate # <%= @user.fullname %> to an event and a device
+</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h4>
+      <%= @title %>
+    </h4>
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-3">
+    <%= render '/admin/users/aside' %>
+  </div>
+</div>

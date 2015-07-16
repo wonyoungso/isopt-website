@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :owner_required, :only => [:edit, :update, :password_update]
   def new
     @user = User.new
+    @user_device = @user.user_devices.build
     render layout: 'application'
   end
 
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:email, :device_id, :first_name, :last_name, :username, :event_isopt_id, :password, :password_confirmation))
+    @user = User.new(params.require(:user).permit(:email, :first_name, :last_name, :username, :password, :password_confirmation, user_devices_attributes: [:event_isopt_id, :user_id]))
 
     if @user.save
       session[:user_id] = @user.id

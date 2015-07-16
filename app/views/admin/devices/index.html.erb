@@ -1,0 +1,34 @@
+<%= render 'tab' %>
+<h3> 
+  Device
+</h3>
+<table class="table table-striped">
+  <tr>
+    <th>
+      #
+    </th>
+    <th>
+      Human ID
+    </th>
+
+    <th>
+      Sim Card ID
+    </th>
+  </tr>
+  <% @devices.each do |device| %>
+  <tr>
+    <td><%= device.id %></td>
+    <td>
+      <%= link_to edit_admin_device_path(device) do %>
+        <%= device.human_id %>
+      <% end %>
+    </td>
+
+    <td>
+      <%= device.sim_card_id %> 
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New Device', new_admin_device_path, class: 'btn btn-primary' %>

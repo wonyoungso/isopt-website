@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  belongs_to :event_isopt
   has_many :minute_records
   attr_accessor :updating_password
+
+
   validates :username, presence: {message: "Please enter a username"},
                        uniqueness: {message: "This username already exists"}
 
@@ -19,11 +20,21 @@ class User < ActiveRecord::Base
                        length: {minimum: 4, too_short: "Password must be at least 4 characters."},
                        :if => :should_validate_password?
 
-  validates :device_id, presence: {message: 'Please enter a device id'},
-                        uniqueness: {scope: [:event_isopt_id], message: 'This device id is already exists.' }
+  has_many :user_devices
+  accepts_nested_attributes_for :user_devices
+  
+  has_many :devices, :through => :user_devices
+  has_many :event_isopts, :through => :user_devices
 
-  validates :event_isopt_id, presence: {message: 'Please choose an event date.' }
   validate :init_time_must_be_in_range  
+
+  def conv_to_json
+    {
+      id: self.id,
+      first_name: self.first_name,
+      last_name: self.last_name
+    }
+  end
 
   def fullname
     "#{self.first_name} #{self.last_name}"
@@ -39,6 +50,9 @@ class User < ActiveRecord::Base
 
   def personal_current_time
     Time.zone.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
+  end
+
+  def self.convert_global_time_to_personal_time
   end
 
   def should_validate_password?

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  human_id: MyString
+  sim_card_id: MyString
+
+two:
+  human_id: MyString
+  sim_card_id: MyString
