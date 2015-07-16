@@ -1,6 +1,6 @@
 class Admin::EventIsoptsController < Admin::AdminController
   def index
-    @event_isopts = EventIsopt.all
+    @event_isopts = EventIsopt.order('held_at DESC')
   end
   
   def activate
