@@ -22,7 +22,7 @@ class Device < ActiveRecord::Base
 
 
   def current_user_device
-    self.user_devices.joins(:event_isopt).where("event_isopts.is_activated = ? AND event_isopts.is_ended IS NULL", true).first
+    self.user_devices.joins(:event_isopt).where("event_isopts.is_activated = ? AND (event_isopts.is_ended IS NULL OR event_isopts.is_ended = ?)", true, false).first
   end
 
   def current_user_name

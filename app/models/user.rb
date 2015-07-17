@@ -53,19 +53,23 @@ class User < ActiveRecord::Base
   end
 
   def personal_time
-    # get actual time difference between now and when the user started
-    td = TimeDifference.between(self.init_at, Time.now)
-    # calculate actual number of seconds the user has spent recording moments
-    moment_time = 0
-    
-    self.moment_records.each do |m|
-      moment_time += m.milliseconds / 1000.0
-    end
+    if self.is_initialized?
+      # get actual time difference between now and when the user started
+      td = TimeDifference.between(self.init_at.to_time, Time.now)
+      # calculate actual number of seconds the user has spent recording moments
+      moment_time = 0
+      
+      self.moment_records.each do |m|
+        moment_time += m.milliseconds / 1000.0
+      end
 
-    # convert to personal time according to user's minute.
-    personal_time = self.init_at.to_time + ((moment_time.seconds + td.in_seconds) * 1000 / self.init_time).minutes
-    
-    personal_time
+      # convert to personal time according to user's minute.
+      personal_time = self.init_at.to_time + ((moment_time.seconds + td.in_seconds) * 1000 / self.init_time).minutes
+      
+      personal_time
+    else
+      Time.now
+    end
   end
 
 

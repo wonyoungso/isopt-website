@@ -19,7 +19,7 @@ class Api::UserDevicesController < ApplicationController
           success: true, 
           status: @user_device.state,
           sim_id: @user_device.device.sim_card_id,
-          start_time: @user_device.user.init_at.to_time,
+          start_time: @user_device.user.init_at,
           minute_in_ms: @user_device.user.init_time,
           personal_time: @user_device.user.personal_time
         }
@@ -76,7 +76,7 @@ class Api::UserDevicesController < ApplicationController
 
   def moment_record
     @device = Device.where(sim_card_id: params[:sim_id]).first
-    mms = params[:minute_in_ms].to_i
+    mms = params[:moment_in_ms].to_i
     
     if @device.present?   
       @user_device = @device.current_user_device
