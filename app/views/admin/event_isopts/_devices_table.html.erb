@@ -1,0 +1,37 @@
+<thead>
+  <tr>
+    <th class="col-md-2">
+      Device ID
+    </th>
+    <th>
+      User
+    </th>
+  </tr>
+</thead>
+<tbody>
+  <% Device.order("created_at ASC").each do |device| %>
+  <tr>
+    <td>
+      <%= device.id %>
+    </td>
+    <td data-device-id="<%= device.id %>">
+      <% user_device = UserDevice.where(device_id: device.id, event_isopt_id: @event_isopt.id).first %>
+      <% if user_device.present? %>
+        <% if user_device.user.present? %>
+          <% uid = user_device.user.id %>
+        <% else %>
+          <% uid = nil %>
+        <% end %>
+      <% else %>
+        <% uid = nil %>  
+      <% end %>
+      <%= form_tag assign_admin_user_devices_path, :class => 'form-vertical' do %>
+        <%= hidden_field_tag :device_id, device.id %>
+        <%= hidden_field_tag :event_isopt_id, @event_isopt.id %>
+        <%= select_tag :user_id, options_for_select([["*deactivated", nil]] + @event_isopt.users.map { |user| [user.fullname, user.id]}, uid), class: 'user_device_select_box', data: {device_id: device.id} %>
+      <% end %>
+      <span class="result"></span>
+    </td>
+  </tr>
+  <% end %>
+</tbody>

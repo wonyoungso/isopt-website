@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MinuteRecordTest < ActiveSupport::TestCase
+class UserDeviceLogTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

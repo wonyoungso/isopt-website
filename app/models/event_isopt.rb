@@ -12,4 +12,10 @@ class EventIsopt < ActiveRecord::Base
     }
   end
 
+  def self.no_other_event_running?
+    EventIsopt.where(is_activated: true, is_ended: false).count == 0
+  end
+
+
+
 end

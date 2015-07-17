@@ -1,0 +1,70 @@
+<%= render 'tab' %>
+
+<h3>
+  Event of <%= @event_isopt.held_at.strftime("%Y/%m/%d") %>
+</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h4>
+      Event Details
+    </h4>
+
+    <div style="margin-left:30px">
+      Event Date: <%= @event_isopt.held_at.strftime("%Y/%m/%d") %><br/>
+      Venue Name: <%= @event_isopt.venue_name %>
+    </div>
+
+    <h4>
+      Event Status
+    </h4>
+    <div style="margin-left:30px">
+      Started: <%= @event_isopt.started_at.strftime("%Y/%m/%d %H:%M") %><br/>
+      Ended: <%= @event_isopt.ended_at.strftime("%Y/%m/%d %H:%M") %>
+    </div>
+    <br/>
+    <% if EventIsopt.no_other_event_running? and !@event_isopt.is_ended? and !@event_isopt.is_activated? %>
+      <%= link_to 'Start Event', activate_admin_event_isopt_path(@event_isopt), :class => "btn btn-danger" %>
+    <% end %>
+
+
+    <h4>
+      Device Mapping
+    </h4>
+    <div style="margin-left:30px">
+      <table class="table table-striped devices_table">
+        <thead>
+          <tr>
+            <th class="col-md-2">
+              Device ID
+            </th>
+            <th>
+              User
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Device.order("created_at ASC").each do |device| %>
+          <tr>
+            <td>
+              <%= device.id %>
+            </td>
+            <td data-device-id="<%= device.id %>">
+              <% user_device = UserDevice.where(device_id: device.id, event_isopt_id: @event_isopt.id).first %>
+              <% if user_device.present? and user_device.user.present? %>
+                <%= link_to user_device.user.fullname, user_path(user_device.user), target: "_blank" %>
+              <% else %>
+                <span style='color:#AAA'>*deactivated</span>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      
+
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

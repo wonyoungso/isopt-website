@@ -2,16 +2,45 @@ class Admin::EventIsoptsController < Admin::AdminController
   def index
     @event_isopts = EventIsopt.order('held_at DESC')
   end
+
+  def show
+    @event_isopt = EventIsopt.find params[:id]
+
+
+    if  @event_isopt.is_ended? and @event_isopt.is_activated?
+      offset = "_ended"
+    elsif @event_isopt.is_activated?
+      offset = "_active"
+    else
+      offset = "_inactive"
+    end
+    
+    render template: "admin/event_isopts/show#{offset}"
+  end
+
+  def devices_table
+    @event_isopt = EventIsopt.find params[:id]
+    render :layout => false, :template => '/admin/event_isopts/_devices_table'
+  end
   
   def activate
     @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.started_at = DateTime.now
+    @event_isopt.is_activated = true 
+    @event_isopt.save 
 
-    EventIsopt.all.each do |ev|
-      ev.is_activated = @event_isopt.id.to_i == ev.id.to_i
-      ev.save
-    end
+    redirect_to request.referer, :notice => 'Successfully Started.'
+  end
 
-    redirect_to request.referer, :notice => 'Successfully Activated.'
+  def ended
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_ended = true
+    @event_isopt.ended_at = DateTime.now
+    @event_isopt.save 
+    
+
+    redirect_to request.referer, :notice => 'Successfully Ended.'
+
   end
 
   def deactivate

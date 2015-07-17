@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li <%= 'class=active' if params[:action] == 'index' and params[:controller] == 'admin/devices' %>>
+    <%= link_to "All Devices(#{Device.count})", admin_devices_path %>
+  </li>
+  
+  <% if @device.present? and not @device.new_record? %>
+  <li class="active">
+    <%= link_to "##{@device.human_id}", admin_device_path(@device) %>
+  </li>
+  <% end %>
+</ul>

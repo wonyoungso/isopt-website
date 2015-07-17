@@ -1,4 +1,103 @@
+<div class="overlay">
+  <%= image_tag_with_at2x "img1.png", id: "drawing-1", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img2.png", id: "drawing-2", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img3.png", id: "drawing-3", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img4.png", id: "drawing-4", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img5.png", id: "drawing-5", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img6.png", id: "drawing-6", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+  <%= image_tag_with_at2x "img7.png", id: "drawing-7", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
+</div>
+<div class="container content tk-adobe-text-pro" id="skrollr-body">
+  <div class="masthead">
+    <h3 class="masthead-title">
+      <a href="/" title="Home">Circle of Moment Measurement</a>
+    </h3>
+    <!--<h4>I &mdash; S &mdash; O &mdash; P &mdash; T</h4>-->
+  </div>
+      <div class="login">
+        <div class="column">
+          <%= image_tag_with_at2x "cmm.png", class: "logo" %>
+        </div>
+        <div class="column cmm-login">
+
 ISOPT
 <%= link_to 'login', login_path %>
 <br/>
 <%= link_to 'join', new_user_path %>
+
+          <form class="form-horizontal" id="login_form" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="vyOHWgR1fD//m3+Zumm10cdTRJHULGuduPtx1fn63QQg8gVuRVHFn7H5XJhygFzUje2PEpL0ts6jIuluPiuWIw==" />
+          <div class="control-groups">
+          <div class="controls">
+          <input type="text" name="email" id="email" placeholder="Email Address" />
+          </div> 
+
+          </div>
+
+          <div class="control-group">
+          <div class="controls">
+          <input type="password" name="password" id="password" placeholder="Password" />
+          </div>
+          </div>
+
+          <div class="form-actions">
+          <input type="submit" name="commit" value="Time Travellers Sign in" class="btn btn-primary" />
+          </div>
+          </form>
+        </div>
+        <div class="clear"></div>
+      </div><!-- end login-->
+
+      <hr>
+
+      <p>What is time really?  As humanity, we collectively agree on using Universal Time as a standard to keep things in order in an increasingly synchronized and complex society. However, is it the only way to measure your time on this earth? What if we re-design time based off of your perception of moments?</p>
+      <p><a href="http://i-s-o-p-t.com/2015/06/20/CircleofMomentMeasurement/">Read More...</a></p>
+
+      <!--
+      <p>By being part of the Circle of Moment Measurement, you will collectively agree to all live by different times. Everyone in this participatory performance will discover their own personalized speed of time that is kept in portable and networked timekeeping devices, designed by the artists with support of LACMA Art + Technology Lab.</p>
+
+      <p>In this participatory performance, there will be a chance to experience the public spaces in LACMA in your own time. After that a conversation about how the new forms of time measurement would affect life would follow, as well as a opportunity to share the experience with the world.</p>
+
+      <p>This is a half-day event, led by the artists, requires about a four-hour time commitment. The afternoon concludes with video interviews documenting the experience and a group discussion about how alternative time measurement might affect daily life.</p>
+    -->
+      <hr class="dark">
+      <div>
+        <div class="column">
+          <h3>Personal Times (PRST)</h3>
+          <ul class="participants">
+            <li><a href="#">Berton Hasebe</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Hyo Kwon</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Kyle McDonald</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Lauren McCarthy</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Taeyoon Choi</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">E Roon Kang</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Jon Moeller</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Joel Ferree</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Amy Heibel</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Berton Hasebe</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Hyo Kwon</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Kyle McDonald</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Lauren McCarthy</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">Taeyoon Choi</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h3>Consensus Times (CNST)</h3>
+          <ul class="participants">
+            <li><a href="#">The First Consensus Time</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <li><a href="#">The Second Consensus Time</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+
+
+      <div class="footer">
+      <p><a href="i-s-o-p-t.com" target="_blank"><i>In Search of Personalized Time</i></a>, a project by <a href="http://taeyoonchoi.com" target="_blank">Taeyoon Choi</a> & <a href="http://eroonkang.com" target="_blank">E Roon Kang</a>.<br>
+        2014–2015, Art + Technology Project, <a href="http://www.lacma.org/LAB" target="_blank">Los Angeles County Museum of Art</a></p>
+      <!--<p class="elsewhere"><em>Project Website: <a href="http://i-s-o-p-t.com/" target="_blank">i-s-o-p-t.com</a></em></p>-->
+    </div>
+
+    </div>
+
+  </div>

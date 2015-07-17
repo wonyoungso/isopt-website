@@ -28,7 +28,7 @@ WY.views.user_show_view = (function(){
   function send_press_time(){
     $.ajax({
       type: 'POST',
-      url: '/api/users/' + user_id + "/minute_records.json",
+      url: '/api/users/' + user_id + "/moment_records.json",
       data: {milliseconds: press_time},
       success: function(data){
         if (data.success) {

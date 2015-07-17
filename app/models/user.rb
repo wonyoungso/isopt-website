@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :minute_records
+  has_many :moment_records
   attr_accessor :updating_password
 
 
@@ -52,8 +52,22 @@ class User < ActiveRecord::Base
     Time.zone.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
   end
 
-  def self.convert_global_time_to_personal_time
+  def personal_time
+    # get actual time difference between now and when the user started
+    td = TimeDifference.between(self.init_at, Time.now)
+    # calculate actual number of seconds the user has spent recording moments
+    moment_time = 0
+    
+    self.moment_records.each do |m|
+      moment_time += m.milliseconds / 1000.0
+    end
+
+    # convert to personal time according to user's minute.
+    personal_time = self.init_at.to_time + ((moment_time.seconds + td.in_seconds) * 1000 / self.init_time).minutes
+    
+    personal_time
   end
+
 
   def should_validate_password?
     updating_password || new_record?

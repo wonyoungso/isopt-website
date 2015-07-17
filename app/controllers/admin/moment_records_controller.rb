@@ -1,17 +1,17 @@
-class Admin::MinuteRecordsController < Admin::AdminController
+class Admin::MomentRecordsController < Admin::AdminController
   before_filter :find_user
 
   def index
-    @minute_records = @user.minute_records
+    @moment_records = @user.moment_records
   end
 
   def edit
-    @minute_record = MinuteRecord.find params[:id]
+    @moment_record = MomentRecord.find params[:id]
   end
 
   def update
-    @minute_record = MinuteRecord.find params[:id]
-    if @minute_record.update_attributes(params.require(:minute_record).permit(:milliseconds))
+    @moment_record = MomentRecord.find params[:id]
+    if @moment_record.update_attributes(params.require(:moment_record).permit(:milliseconds))
       redirect_to request.referer, :notice => 'successfully updated minute record.'
     else
       redirect_to request.referer, :alert => "Error occured"

@@ -14,5 +14,9 @@
 //= require jquery_ujs
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
+//= require ./vendor/retina.min.js
+//= require ./vendor/jquery-blink.js
+//= require ./vendor/skrollr.js
+//
 //= require WY.js
 //= require_directory ./views

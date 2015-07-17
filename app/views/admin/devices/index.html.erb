@@ -14,18 +14,26 @@
     <th>
       Sim Card ID
     </th>
+    <th>
+      Edit
+    </th>
   </tr>
   <% @devices.each do |device| %>
   <tr>
     <td><%= device.id %></td>
     <td>
-      <%= link_to edit_admin_device_path(device) do %>
+      <%= link_to admin_device_path(device) do %>
         <%= device.human_id %>
       <% end %>
     </td>
 
     <td>
+      <%= link_to admin_device_path(device) do %>
       <%= device.sim_card_id %> 
+      <% end %>
+    </td>
+    <td>
+      <%= link_to 'Edit', edit_admin_device_path(device) %>
     </td>
   </tr>
   <% end %>

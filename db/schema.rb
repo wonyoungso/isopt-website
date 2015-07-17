@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716025607) do
+ActiveRecord::Schema.define(version: 20150717151031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,24 @@ ActiveRecord::Schema.define(version: 20150716025607) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.boolean  "is_activated", default: false
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.boolean  "is_ended"
   end
 
-  create_table "minute_records", force: :cascade do |t|
+  create_table "moment_records", force: :cascade do |t|
     t.integer  "milliseconds"
     t.datetime "submitted_at"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "user_device_logs", force: :cascade do |t|
+    t.integer  "user_device_id"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "user_devices", force: :cascade do |t|

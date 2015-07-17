@@ -1,15 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>IsoptWebsite</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Circle of Moment Measurement
+    
+  </title>
+
+  <meta name="description" content="Circle of Moment Measurement, I—S—O—P—T, Project by Taeyoon Choi and E Roon Kang. 2014–2015, Art + Technology Project, Los Angeles County Museum of Art (LACMA)">
+  <meta name="keywords" content="LACMA, Taeyoon Choi, E Roon Kang, Personalized Time">
+  <meta name="author" content="Taeyoon Choi and E Roon Kang">
+
+  <meta property="og:title" content="Circle of Moment Measurement, I—S—O—P—T">
+  <meta property="og:site_name" content="Circle of Moment Measurement Project Site">
+  <meta property="og:description" content="By Taeyoon Choi and E Roon Kang — Los Angeles County Museum of Art (LACMA), Art + Technology Project, 2014-2015">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="article">
+  <meta property="article:author" content="https://www.facebook.com/eroon.kang" />
+  <meta property="article:author" content="https://www.facebook.com/taeyoon.choi.7" />
+  <meta property="article:publisher" content="https://www.facebook.com/LACMA" />
+
+  <meta property="og:image" content="public/img/cmm@2x.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="658">
+  <meta property="og:image:height" content="378">
+
+  <!-- favicon -->
+  <link rel="icon" type="image/png" href="public/favicon.png">
+    
+  <!-- TypeKit -->
+  <script type="text/javascript">
+  (function(d) {
+    var config = {
+      kitId: 'acn6urt',
+      scriptTimeout: 3000
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+  </script>
+
   <%= stylesheet_link_tag    'application', media: 'screen' %>
   <%= stylesheet_link_tag    'print', media: 'print' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 </head>
 <body>
-
-<%= yield %>
-
-</body>
+  <%= yield %>
+  <script>
+    $(document).ready(function(e){
+      WY.views.scroll_view();
+    });
+  </script>
+  </body>
 </html>

@@ -4,10 +4,18 @@ Rails.application.routes.draw do
   match 'logout' => 'sessions#destroy', :via => :get
   match 'logout' => 'sessions#destroy', :via => :delete
 
+
+
+
   namespace :api do 
+
+    match '/box/:sim_id/status', :to => 'user_device#status', :via => :get
+    match '/box/:sim_id/minuterecord/:minute_in_ms', :to => 'user_device#minute_record', :via => :get
+    match '/box/:sim_id/momentrecord/:moment_in_ms', :to => 'user_device#moment_record', :via => :get
+
     resources :user_devices
     resources :users do
-      resources :minute_records
+      resources :moment_records
       member do 
         post 'init_device'
         post 'press_btn'
@@ -17,17 +25,22 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :devices
-    
+    resources :user_devices do
+      collection do 
+        post 'assign'
+      end
+    end
+     
     resources :event_isopts do
       member do 
         post 'activate'
-        post 'deactivate' 
+        post 'ended' 
+        get 'devices_table'
       end
     end
-
+     
     resources :users do 
-      resources :user_devices
-      resources :minute_records
+      resources :moment_records
       collection do 
         get 'search'
         get 'event_isopt'

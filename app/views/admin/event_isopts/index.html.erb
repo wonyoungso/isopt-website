@@ -15,14 +15,15 @@
       Event Venue
     </th>
     <th>
-      Activate
+      Edit
     </th>
+
   </tr>
   <% @event_isopts.each do |event_isopt| %>
   <tr>
     <td><%= event_isopt.id %></td>
     <td>
-      <%= link_to edit_admin_event_isopt_path(event_isopt) do %>
+      <%= link_to admin_event_isopt_path(event_isopt) do %>
         <%= event_isopt.held_at.try("strftime", "%Y/%m/%d") %>
       <% end %>
     </td>
@@ -31,11 +32,7 @@
       <%= event_isopt.venue_name %> 
     </td>
     <td>
-      <% if event_isopt.is_activated? %>
-        <%= link_to 'Activated', deactivate_admin_event_isopt_path(event_isopt), method: :post, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to 'Deactivated', activate_admin_event_isopt_path(event_isopt), method: :post, class: 'btn btn-default' %>
-      <% end %>
+      <%= link_to 'Edit', edit_admin_event_isopt_path(event_isopt) %>
     </td>
   </tr>
   <% end %>

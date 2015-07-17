@@ -1,0 +1,84 @@
+<%= render 'tab' %>
+
+<h3>
+  Event of <%= @event_isopt.held_at.strftime("%Y/%m/%d") %>
+</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h4>
+      Event Details
+    </h4>
+
+    <div style="margin-left:30px">
+      Event Date: <%= @event_isopt.held_at.strftime("%Y/%m/%d") %><br/>
+      Venue Name: <%= @event_isopt.venue_name %>
+    </div>
+
+    <h4>
+      Event Status
+    </h4>
+    <div style="margin-left:30px">
+      Started: None<br/>
+      Ended: None
+    </div>
+    <br/>
+    <% if EventIsopt.no_other_event_running? %>
+      <%= link_to 'Start Event', activate_admin_event_isopt_path(@event_isopt), :method => :post, :class => "btn btn-danger" %>
+    <% end %>
+
+
+    <h4>
+      Device Mapping
+    </h4>
+    <div style="margin-left:30px">
+      <table class="table table-striped devices_table">
+        <%= render 'devices_table' %>
+      </table>
+
+      <script>
+        (function(){
+          $(document).ready(function(e){
+            $("body").on("change", ".user_device_select_box", function(e){
+              var device_id = $(this).data('device-id');
+              var td = $("table.devices_table td[data-device-id=" + device_id + "]");
+              var form = td.find("form");
+              // debugger;
+
+              $.ajax({
+                type: 'POST',
+                url: form.attr('action') + '.json',
+                data: form.serialize(),
+                success: function(data){
+                  if (data.success) {
+                    sync(device_id);
+                  }
+                }
+              })
+
+            });
+          }); 
+
+          function sync(device_id){
+            $.ajax({
+              type: 'GET',
+              url: '/admin/event_isopts/' + <%= @event_isopt.id %> + '/devices_table',
+              success: function(data){
+                $(".devices_table").empty().append($(data));
+
+                var td = $("table.devices_table td[data-device-id=" + device_id + "]");
+                td.find(".result").text("Success");
+                _.delay(function(){
+                  td.find(".result").text("");
+                }, 1000);
+              }
+            })
+          }
+        })();
+
+      </script>
+
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

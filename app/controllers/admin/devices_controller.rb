@@ -3,6 +3,11 @@ class Admin::DevicesController < Admin::AdminController
     @devices = Device.all
   end
 
+  def show
+    @device = Device.find params[:id]
+  end
+
+
   def new
     @device = Device.new
   end

@@ -1,0 +1,40 @@
+<%= render 'tab' %>
+
+<h3>
+  Device #<%= @device.id %>
+</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h4>
+      Device Details
+    </h4>
+
+    <div style="margin-left:30px">
+      Box ID: <%= @device.human_id %><br/>
+      Sim ID: <%= @device.sim_card_id %>
+    </div>
+
+    <h4>
+      Device Status
+    </h4>
+
+    <div style="margin-left:30px">
+      Last Update: <%= time_ago_in_words(@device.updated_at) %> ago<br/>
+      Current Event: <%= @device.current_event_isopt_name %><br/>
+      Current User: <%= @device.current_user_name %>
+    </div>
+
+
+    <h4>
+      Event Logs
+    </h4>
+    <div style="margin-left:30px">
+      <% @device.user_devices.each do |user_device| %>
+        <%= render partial: '/admin/devices/render_log', locals: {user_device: user_device} %>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

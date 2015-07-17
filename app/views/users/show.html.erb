@@ -14,7 +14,7 @@
 <% end %>
 
 <div class="bar_area">
-<% @user.minute_records.each do |mr| %>
+<% @user.moment_records.each do |mr| %>
   <div class="bar_container">
     <div class="fl"><%= mr.submitted_at.strftime("%H:%M") %></div>
     <div class="fl bar" style="width: <%= mr.milliseconds / 10 %>px">
