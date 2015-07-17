@@ -3,6 +3,19 @@ class Admin::EventIsoptsController < Admin::AdminController
     @event_isopts = EventIsopt.order('held_at DESC')
   end
 
+  def reset
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.started_at = nil#DateTime.now
+    @event_isopt.is_activated = false
+    @event_isopt.is_ended = flase
+    @event_isopt.ended_at = nil
+
+    @event_isopt.save
+
+    redirect_to request.referer, :notice => 'Successfully Reset'
+
+  end
+
   def show
     @event_isopt = EventIsopt.find params[:id]
 

@@ -22,7 +22,7 @@
       Ended: None
     </div>
     <br/>
-    <%= link_to 'End Event', ended_admin_event_isopt_path(@event_isopt), :method => :post, :class => "btn btn-danger" %>
+    <%= link_to 'End Event', ended_admin_event_isopt_path(@event_isopt), :method => :post, :confirm => 'Are you sure?', :class => "btn btn-danger" %>
     
 
     <h4>

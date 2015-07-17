@@ -18,6 +18,10 @@
       Edit
     </th>
 
+    <th>
+      Reset
+    </th>
+
   </tr>
   <% @event_isopts.each do |event_isopt| %>
   <tr>
@@ -33,6 +37,9 @@
     </td>
     <td>
       <%= link_to 'Edit', edit_admin_event_isopt_path(event_isopt) %>
+    </td>
+    <td>
+      <%= link_to 'Reset', reset_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
     </td>
   </tr>
   <% end %>

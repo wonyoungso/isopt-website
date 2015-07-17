@@ -25,7 +25,6 @@ class Api::UserDevicesController < ApplicationController
         }
           # {"state" => @state, "sim_id" => @sim_id, "start_time" => @start_time, "minute_in_ms" => @minute_in_ms, "personal_time" => self.personal_time}.to_s
       else
-        @user_device.update_column(:updated_at, DateTime.now)
         render json: {
           success: true, 
           status: :state_inactive,

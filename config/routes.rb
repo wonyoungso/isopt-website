@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   namespace :api do 
 
-    match '/box/:sim_id/status', :to => 'user_device#status', :via => :get
-    match '/box/:sim_id/minuterecord/:minute_in_ms', :to => 'user_device#minute_record', :via => :get
-    match '/box/:sim_id/momentrecord/:moment_in_ms', :to => 'user_device#moment_record', :via => :get
+    match '/box/:sim_id/status', :to => 'user_devices#status', :via => :get
+    match '/box/:sim_id/minuterecord/:minute_in_ms', :to => 'user_devices#minute_record', :via => :get
+    match '/box/:sim_id/momentrecord/:moment_in_ms', :to => 'user_devices#moment_record', :via => :get
 
     resources :user_devices
     resources :users do
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
         post 'activate'
         post 'ended' 
         get 'devices_table'
+        post 'reset'
       end
     end
      
