@@ -22,6 +22,7 @@ class Api::UserDevicesController < ApplicationController
           start_time: @user_device.user.init_at,
           minute_in_ms: @user_device.user.init_time,
           personal_time: @user_device.user.personal_time,
+          device_id: @device.human_id,
           tz_offset: @user_device.event_isopt.tz_offset
         }
           # {"state" => @state, "sim_id" => @sim_id, "start_time" => @start_time, "minute_in_ms" => @minute_in_ms, "personal_time" => self.personal_time}.to_s
@@ -31,8 +32,9 @@ class Api::UserDevicesController < ApplicationController
           status: :state_inactive,
           sim_id: @device.sim_card_id,
           start_time: nil,
+          device_id: @device.human_id,
           minute_in_ms: nil,
-          personal_time: nil
+          personal_time: Time.now
         }       
       end
 
