@@ -5,7 +5,7 @@
       <%= f.text_field :username, :class => 'form-control', :placeholder => 'Username' %>
     </div>
   </div>
-     <div class="form-group">
+   <div class="form-group">
     <%= f.label :password, 'Password', :class => 'col-md-2 control-label' %>
     <div class="col-md-5">
       <%= f.password_field :password, :class => 'form-control', :placeholder => 'Password', data: {field: 'password'} %>
@@ -20,6 +20,7 @@
     </div>
 
   </div>
+
 
   <div class="form-group">
     <%= f.label :first_name, 'First Name', :class => 'col-md-2 control-label' %>
@@ -42,6 +43,15 @@
     </div>
   </div>
   
+  <%= f.fields_for :user_devices do |udf| %>
+    <div class="form-group">
+      <%= f.label :event_isopt_id, 'Event Date', :class => 'col-md-2 control-label' %>
+      <div class="col-md-5">
+        <%= udf.select :event_isopt_id, EventIsopt.all.map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
+      </div>
+    </div>
+
+  <% end %>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

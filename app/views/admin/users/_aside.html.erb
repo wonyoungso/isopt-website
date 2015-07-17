@@ -1,3 +1,4 @@
+<% unless @user.new_record? %>
 <ul class="nav nav-pills nav-stacked">
   <li <%= 'class=active' if params[:controller] == 'admin/moment_records' %>>
     <%= link_to "Moment Records(#{@user.moment_records.count})", admin_user_moment_records_path(@user) %>
@@ -6,3 +7,4 @@
     <%= link_to "Edit Allocation", admin_user_u_user_devices_path(@user) %>
   </li>
 </ul>
+<% end %>

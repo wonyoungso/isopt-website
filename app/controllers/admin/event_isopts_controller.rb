@@ -9,7 +9,6 @@ class Admin::EventIsoptsController < Admin::AdminController
     @event_isopt.is_activated = false
     @event_isopt.is_ended = false
     @event_isopt.ended_at = nil
-
     @event_isopt.save
 
     redirect_to request.referer, :notice => 'Successfully Reset'
@@ -41,6 +40,8 @@ class Admin::EventIsoptsController < Admin::AdminController
     @event_isopt.started_at = DateTime.now
     @event_isopt.is_activated = true 
     @event_isopt.save 
+
+    @event_isopt.reset_all_records!
 
     redirect_to request.referer, :notice => 'Successfully Started.'
   end

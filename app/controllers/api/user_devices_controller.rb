@@ -21,7 +21,8 @@ class Api::UserDevicesController < ApplicationController
           sim_id: @user_device.device.sim_card_id,
           start_time: @user_device.user.init_at,
           minute_in_ms: @user_device.user.init_time,
-          personal_time: @user_device.user.personal_time
+          personal_time: @user_device.user.personal_time,
+          tz_offset: @user_device.event_isopt.tz_offset
         }
           # {"state" => @state, "sim_id" => @sim_id, "start_time" => @start_time, "minute_in_ms" => @minute_in_ms, "personal_time" => self.personal_time}.to_s
       else

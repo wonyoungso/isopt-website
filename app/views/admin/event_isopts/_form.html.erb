@@ -12,6 +12,12 @@
       <%= f.text_field :venue_name, :class => 'form-control', :placeholder => 'Venue Name' %>
     </div>
   </div>
+  <div class="form-group">
+    <%= f.label :tz_offset, 'Timezone offset', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :tz_offset, :class => 'form-control', :placeholder => 'e.g.)-0500' %>
+    </div>
+  </div>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

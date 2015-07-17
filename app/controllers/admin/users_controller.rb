@@ -6,21 +6,19 @@ class Admin::UsersController < Admin::AdminController
     render template: '/admin/users/index'
   end
 
-  def password_reset 
+  def deinitialize
     @user = User.find params[:id]
 
-    @user_token = UserToken.new
-    @user_token.user = @user
-    if @user_token.save 
+    @user.init_time = nil
+    @user.is_initialized = false
+    @user.init_at = nil
 
-      UserSendPasswordResetMailWorker.perform_async(@user.id)
-
-      redirect_to request.referer, :notice => 'Successfully sent reset email.'
+    if @user.save
+      redirect_to request.referer, :notice => 'Successfully deinitialized.'
     else
-      redirect_to request.referer, :alert => "#{@user_token.errors.full_messages.join(' ')}"
+      redirect_to request.referer, :alert => "Error Occured: #{@user.errors.full_messages.join(' ')}"
     end
   end
-
 
   def index
     @title = "All Users"
@@ -37,11 +35,23 @@ class Admin::UsersController < Admin::AdminController
 
   def new
     @user = User.new
+    @user_device = @user.user_devices.build
   end
   
   def edit
     @user = User.find params[:id]
   end
+
+  def create
+    @user = User.new(params.require(:user).permit(:email, :first_name, :last_name, :username, :password, :password_confirmation, user_devices_attributes: [:event_isopt_id, :user_id]))
+
+    if @user.save
+      redirect_to edit_admin_user_path(@user), :notice => 'Successfully Created.'
+    else  
+      render '/admin/users/new'
+    end
+  end
+
 
   def update
     @user = User.find params[:id]
@@ -69,7 +79,7 @@ class Admin::UsersController < Admin::AdminController
 
     if @user.save
       flash[:notice] = 'Successfully updated init_time.'
-      render :edit
+      redirect_to request.referer
     else
       flash[:alert] = "#{@user.errors.full_messages.join(' ')}"
       redirect_to request.referer

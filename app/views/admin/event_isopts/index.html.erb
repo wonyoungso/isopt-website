@@ -39,7 +39,9 @@
       <%= link_to 'Edit', edit_admin_event_isopt_path(event_isopt) %>
     </td>
     <td>
-      <%= link_to 'Reset', reset_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+      <% if event_isopt.is_resettable? %>
+        <%= link_to 'Reset', reset_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+      <% end %>
     </td>
   </tr>
   <% end %>

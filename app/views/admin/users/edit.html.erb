@@ -10,6 +10,11 @@
 
     <h4>Initialization Manually</h4>
     <%= render 'edit_init_time_form' %>
+    
+    <% if @user.is_initialized? %>
+    <%= link_to "Deinitialize", deinitialize_admin_user_path(@user), :method => :patch, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %>
+    <% end %>
+
     <%= link_to "Delete", admin_user_path(@user), :method => :delete, :class => "btn btn-danger", :data => {:confirm => "Are you sure?"} %>
   </div>
   <div class="col-md-3">

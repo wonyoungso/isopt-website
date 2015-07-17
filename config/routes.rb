@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
       member do 
         patch 'update_init_time'
+        patch 'deinitialize'
       end
     end
 

@@ -16,6 +16,17 @@ class EventIsopt < ActiveRecord::Base
     EventIsopt.where(is_activated: true, is_ended: false).count == 0
   end
 
+  def reset_all_records!
+    self.users.each do |user|
+      user.init_time = nil
+      user.is_initialized = false
+      user.init_at = nil
+      user.save 
+
+      user.moment_records.destroy_all
+    end
+
+  end
 
 
 end
