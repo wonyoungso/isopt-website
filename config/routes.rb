@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
      
     resources :users do 
+      resources :u_user_devices
       resources :moment_records
       collection do 
         get 'search'

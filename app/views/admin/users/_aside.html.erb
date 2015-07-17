@@ -2,4 +2,7 @@
   <li <%= 'class=active' if params[:controller] == 'admin/moment_records' %>>
     <%= link_to "Moment Records(#{@user.moment_records.count})", admin_user_moment_records_path(@user) %>
   </li>
+  <li <%= 'class=active' if params[:controller] == 'admin/u_user_devices' %>>
+    <%= link_to "Edit Allocation", admin_user_u_user_devices_path(@user) %>
+  </li>
 </ul>

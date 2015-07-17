@@ -1,4 +1,4 @@
-<%= form_for [:admin, @user, @user_device], :html => {:class => 'form-horizontal'} do |f| %>
+<%= form_for @user_device, :url => admin_user_u_user_device_path(@user, @user_device), :html => {:class => 'form-horizontal'} do |f| %>
   <div class="form-group">
     <%= f.label :device_id, 'Device ID', :class => 'col-md-2 control-label' %>
     <div class="col-md-5">
