@@ -7,7 +7,7 @@ class Admin::EventIsoptsController < Admin::AdminController
     @event_isopt = EventIsopt.find params[:id]
     @event_isopt.started_at = nil#DateTime.now
     @event_isopt.is_activated = false
-    @event_isopt.is_ended = flase
+    @event_isopt.is_ended = false
     @event_isopt.ended_at = nil
 
     @event_isopt.save
