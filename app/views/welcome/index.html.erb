@@ -10,7 +10,7 @@
 <div class="container content tk-adobe-text-pro" id="skrollr-body">
   <div class="masthead">
     <h3 class="masthead-title">
-      <a href="/" title="Home">Circle of Moment Measurement</a>
+      <%= link_to 'Circle of Moment Measurement', root_path, title: 'Home' %>
     </h3>
     <!--<h4>I &mdash; S &mdash; O &mdash; P &mdash; T</h4>-->
   </div>
@@ -20,29 +20,24 @@
         </div>
         <div class="column cmm-login">
 
-ISOPT
-<%= link_to 'login', login_path %>
-<br/>
-<%= link_to 'join', new_user_path %>
-
-          <form class="form-horizontal" id="login_form" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="vyOHWgR1fD//m3+Zumm10cdTRJHULGuduPtx1fn63QQg8gVuRVHFn7H5XJhygFzUje2PEpL0ts6jIuluPiuWIw==" />
+          <%= form_tag login_path, :class => 'form-horizontal', :id => 'login_form' do %>
           <div class="control-groups">
           <div class="controls">
-          <input type="text" name="email" id="email" placeholder="Email Address" />
+            <%= text_field_tag :email, '', :placeholder => 'Email Address' %>
           </div> 
 
           </div>
 
           <div class="control-group">
           <div class="controls">
-          <input type="password" name="password" id="password" placeholder="Password" />
+            <%= password_field_tag :password, '', :placeholder => 'Password' %>
           </div>
           </div>
 
           <div class="form-actions">
-          <input type="submit" name="commit" value="Time Travellers Sign in" class="btn btn-primary" />
+            <%= submit_tag "Time Travellers Sign in", :class => 'btn btn-primary' %>
           </div>
-          </form>
+          <% end %>
         </div>
         <div class="clear"></div>
       </div><!-- end login-->

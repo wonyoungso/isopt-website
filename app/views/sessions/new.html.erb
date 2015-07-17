@@ -1,8 +1,71 @@
+<div class="overlay" >
+  <img src="public/img/img1.png" id="drawing-1" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img2.png" id="drawing-2" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img3.png" id="drawing-3" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img4.png" id="drawing-4" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img5.png" id="drawing-5" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img6.png" id="drawing-6" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+  <img src="public/img/img7.png" id="drawing-7" class="drawings" data-0="margin-top:0px" data-end="margin-top:-1000px;">
+</div>
+    <div class="container content tk-adobe-text-pro" id="skrollr-body">
+      <div class="masthead">
+        <h3 class="masthead-title">
+          <a href="/" title="Home">Circle of Moment Measurement</a>
+        </h3>
+        <!--<h4>I &mdash; S &mdash; O &mdash; P &mdash; T</h4>-->
+      </div>
+      
+      <div class="login">
+        <div class="cmm-register">
+          <img src="public/img/cmm.png" class="logo">
+          
+          <%= form_tag login_path, :class => 'form-horizontal', :id => 'login_form' do %>
+          <div class="control-groups">
+            <div class="controls">
+              <label>Username</label><input placeholder="Username" type="text" name="user[username]" id="user_username" />
+            </div>
+            <div class="controls">
+              <label>Password</label><input placeholder="Password" data-field="password" type="password" name="user[password]" id="user_password" />
+            </div>
+            <div class="controls">
+              <label>&nbsp;</label><input placeholder="Confirm password" data-field="password_confirmation" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
+            </div>
+
+            <div class="controls">
+              <label>First Name</label><input placeholder="First Name" type="text" name="user[first_name]" id="user_first_name" />
+            </div>
+            <div class="controls">
+              <label>Last Name</label><input placeholder="Last Name" type="text" name="user[last_name]" id="user_last_name" />
+            </div>
+            <div class="controls">
+              <label>Email</label><input placeholder="Email" class="text_field email_field" data-field="email" type="text" name="user[email]" id="user_email" />
+            </div>
+          </div>
+          <div class="form-actions">
+          <input type="submit" name="commit" value="Register" class="btn btn-primary" />
+          </div>
+          </form>
+        </div>
+      </div><!-- end login-->
+
+    
+
+
+
+      <div class="footer">
+      <p><a href="i-s-o-p-t.com" target="_blank"><i>In Search of Personalized Time</i></a>, a project by <a href="http://taeyoonchoi.com" target="_blank">Taeyoon Choi</a> & <a href="http://eroonkang.com" target="_blank">E Roon Kang</a>.<br>
+        2014–2015, Art + Technology Project, <a href="http://www.lacma.org/LAB" target="_blank">Los Angeles County Museum of Art</a></p>
+      <!--<p class="elsewhere"><em>Project Website: <a href="http://i-s-o-p-t.com/" target="_blank">i-s-o-p-t.com</a></em></p>-->
+    </div>
+
+    </div>
+
+  </div>
+
 <h3>
   Sign in
 </h3>
 
-<%= form_tag login_path, :class => 'form-horizontal', :id => 'login_form' do %>
   <div class="control-groups">
     <%= label_tag :email, 'Email', :class => 'control-label' %>
     <div class="controls">
