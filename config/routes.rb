@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   match 'login' => 'sessions#create', :via => :post
   match 'logout' => 'sessions#destroy', :via => :get
   match 'logout' => 'sessions#destroy', :via => :delete
-  match '/join' => 'users#new', :via => :get, :as => 'join'
-  match '/:username' => 'users#show', :via => :get, :as => 'username'
 
 
 
@@ -69,6 +67,8 @@ Rails.application.routes.draw do
   resources :users
   resources :event_isopts
 
+  match '/join' => 'users#new', :via => :get, :as => 'join'
+  match '/:username' => 'users#show', :via => :get, :as => 'username'
   
   root 'welcome#index'
 
