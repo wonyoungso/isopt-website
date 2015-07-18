@@ -34,7 +34,7 @@ WY.views.user_show_view = (function(){
     
     _.each(moment_records, function (mr) {
       var bar = $($(".graph .bar:not(.on):not(.start)")[Math.floor(mr.minute_idx)]);
-      bar.addClass("on").width(Math.max(10 * mr.milliseconds / 1000, 10)).append($(pop_template(mr)));
+      bar.addClass("on").width(Math.max(10 * mr.milliseconds / 10000, 10)).append($(pop_template(mr)));
 
       $(".graph .clear").remove();
       $(".graph").append($("<div />", {"class": "bar"}));
@@ -42,8 +42,6 @@ WY.views.user_show_view = (function(){
 
       $(".graph").append($("<div />", {"class": "clear"}));
   }
-
-
 
   function send_press_time(){
     $.ajax({
