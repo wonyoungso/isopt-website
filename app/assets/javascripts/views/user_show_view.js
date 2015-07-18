@@ -33,7 +33,7 @@ WY.views.user_show_view = (function(){
     var pop_template = _.template('<div class="pop label"><%= start_time %> –<br><%= end_time %></div>');
     
     _.each(moment_records, function (mr) {
-      var bar = $($(".graph .bar:not(.on)")[Math.floor(mr.minute_idx)]);
+      var bar = $($(".graph .bar:not(.on .start)")[Math.floor(mr.minute_idx)]);
       bar.addClass("on").width(Math.max(10 * mr.milliseconds / 1000, 10)).append($(pop_template(mr)));
 
       $(".graph .clear").remove();
