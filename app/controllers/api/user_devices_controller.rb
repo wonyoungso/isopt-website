@@ -40,7 +40,28 @@ class Api::UserDevicesController < ApplicationController
       end
 
     else
-      render json: {success: false, message: "No such box."}
+      @device = Device.new
+      @device.sim_card_id = params[:sim_id]
+      @device.human_id = 1 + Device.count
+
+      if @device.save
+        render json: {
+          success: true, 
+          status: :state_inactive,
+          sim_id: @device.sim_card_id,
+          start_time: nil,
+          device_id: @device.human_id,
+          minute_in_ms: nil,
+          personal_time: Time.now,
+          tz_offset: "-0700"
+        }       
+        return
+      else
+        render json: {
+          success: false,
+          message: 'No such box.'
+        }    
+      end
     end
   end
 
