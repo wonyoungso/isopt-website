@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717223402) do
+ActiveRecord::Schema.define(version: 20150718001058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150717223402) do
     t.boolean  "is_ended"
     t.string   "tz_offset",     default: "-0500"
     t.boolean  "is_resettable", default: true
+    t.string   "title"
+    t.boolean  "is_published",  default: false
   end
 
   create_table "moment_records", force: :cascade do |t|

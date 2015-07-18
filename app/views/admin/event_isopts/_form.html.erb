@@ -7,6 +7,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :title, 'Title', :class => 'col-md-2 control-label' %>
+    <div class="col-md-5">
+      <%= f.text_field :title, :class => 'form-control', :placeholder => 'Title' %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :venue_name, 'Venue Name', :class => 'col-md-2 control-label' %>
     <div class="col-md-5">
       <%= f.text_field :venue_name, :class => 'form-control', :placeholder => 'Venue Name' %>

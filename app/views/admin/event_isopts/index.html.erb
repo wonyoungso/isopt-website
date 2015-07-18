@@ -20,6 +20,10 @@
 
     <th>
       Reset
+    </th> 
+
+    <th>
+      Publish
     </th>
 
   </tr>
@@ -41,6 +45,17 @@
     <td>
       <% if event_isopt.is_resettable? %>
         <%= link_to 'Reset', reset_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+      <% end %>
+    </td>
+    <td>
+      <% unless event_isopt.is_resettable? %>
+        <% if event_isopt.is_published? %>
+          Published<br/>
+          <%= link_to 'Unpublish', unpublish_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+        <% else %>
+          Unpublished<br/>
+          <%= link_to 'Publish', publish_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+        <% end %>
       <% end %>
     </td>
   </tr>

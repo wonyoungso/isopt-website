@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
 
-    if @user.is_initialized?
+
+    if @user.is_initialized? and @user.current_event_isopt.present?
+      @minutes = TimeDifference.between(@user.init_at, Time.now).in_minutes
+
       render :template => '/users/show'
     else
       render :template => '/users/not_ready'

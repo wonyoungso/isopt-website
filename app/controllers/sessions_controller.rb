@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    @user = User.new
   end
 
   def create
@@ -19,18 +18,18 @@ class SessionsController < ApplicationController
           type: "Password",
           message: "This password does not match the email entered. Please check and re-enter your password."
         }
-
-        @user = User.new
-        render :template => 'sessions/new', :handlers => [:erb]
+        @users = User.where(is_initialized: true)
+        @event_isopts = EventIsopt.where(is_resettable: false, is_published: true)
+        render :template => 'welcome/index', :handlers => [:erb]
       end
     else
       @valid_data = {
         type: "Email", 
         message: "This email does not exist. Please check the email you have entered."
       }
-
-      @user = User.new
-      render :template => 'sessions/new', :handlers => [:erb]
+      @users = User.where(is_initialized: true)
+      @event_isopts = EventIsopt.where(is_resettable: false, is_published: true)
+      render :template => 'welcome/index', :handlers => [:erb]
     end
 
   end

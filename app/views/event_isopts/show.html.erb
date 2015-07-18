@@ -1,0 +1,39 @@
+<div class="container content tk-adobe-text-pro" id="skrollr-body">
+    <div class="others">
+      <h2>The <%= @event_isopt.title %> of:</h2>
+      <ul class="participants">
+        <% @event_isopt.users.each do |user| %>
+        <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= user.personal_current_time.strftime("%l:%M%P") %></span></li>
+        <% end %>
+      </ul>
+      <div class="clear"></div>
+  </div>
+  <hr>
+    <div class="user">
+      <!--<p class="username"><i>is currently</i></p>-->
+      <p class="time">09<span class="colon">:</span>34pm
+      <p class="date">9/23/2015, CNST<a href="#sup1"><sup>[1]</sup></a></p>
+
+    <hr>
+
+      <p>This Consensus Time is agreed by all participants above, calculated on the basis of tha participant's recorded Personal Times on the afternoon of <%= @event_isopt.held_at.strftime("%m/%d/%Y") %> PST at the <%= @event_isopt.venue_name %> as a part of <%= link_to 'Circle of Moment Measurement', root_path %> workshop and discussion.</p>
+
+      <p>As a result of a roundtable discussion, the party has negotiated the following formula to create Consensus Time.</p>
+      
+      <p class="label formula">The formula goes here, if possible</p>
+
+      <p>This consensus time is being broadcasted through NTP<a href="#sup1"><sup>[2]</sup></a> at <a href="#">123.456.789</a>. Further information on how to utilize this time can be found <a href="#">here</a>.</p>
+
+    </div><!-- end prst-->
+    <hr>
+    <div class="footnote">
+      <ul>
+        <li id="sup1">[1] PRST, Personalized Time – <a href="http://i-s-o-p-t.com/">http://i-s-o-p-t.com/</a></li>
+        <li id="sup2">[2] NTP, Network Time Protocol – <a href="https://en.wikipedia.org/wiki/Network_Time_Protocol">https://en.wikipedia.org/wiki/Network_Time_Protocol</a></li>
+      </ol>
+    </div>
+    <%= render 'layouts/footer' %>
+
+  </div>
+
+</div>

@@ -28,6 +28,19 @@ class User < ActiveRecord::Base
 
   validate :init_time_must_be_in_range  
 
+  def current_user_device
+    self.user_devices.first
+  end
+
+  def current_event_isopt
+    if self.current_user_device.present?
+      self.current_user_device.event_isopt
+    else
+      nil
+    end
+  end
+
+
   def conv_to_json
     {
       id: self.id,
@@ -49,7 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def personal_current_time
-    Time.zone.at(self.init_at.to_i + ((DateTime.now.to_i - self.init_at.to_i) * self.pst_ratio)).to_datetime
+    self.personal_time
   end
 
   def personal_time

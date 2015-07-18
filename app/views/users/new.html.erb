@@ -1,44 +1,63 @@
-<h2>
-  JOIN
-</h2>
-<% if @user.errors.messages.size > 0 %>
-<div>
-  The account is failed to create because of following reasons:<br/>
-  <% @user.errors.messages.each do |msg| %>
-    <div>
-      <%= msg[1].first %>
-    </div>
-  <% end %>
+<div class="container content tk-adobe-text-pro" id="skrollr-body">
+
+    <div class="login">
+      <div class="cmm-register">
+        <%= image_tag_with_at2x "cmm.png", class: "logo" %>
+
+        <% if @user.errors.messages.size > 0 %>
+        <div>
+          The account is failed to create because of following reasons:<br/>
+          <% @user.errors.messages.each do |msg| %>
+            <div>
+              <%= msg[1].first %>
+            </div>
+          <% end %>
+
+        </div>
+        <% end %>
+
+        <%= form_for @user, :class => 'form-horizontal' do |f|  %>  
+        <div class="control-groups">
+          <div class="controls">
+            <label>Username</label><%= f.text_field :username, :placeholder => 'Username' %>
+          </div>
+          <div class="controls">
+            <label>Password</label><%= f.password_field :password, :placeholder => 'Password', data: {field: 'password'} %>
+          </div>
+          <div class="controls">
+            <label>&nbsp;</label><%= f.password_field :password_confirmation, :placeholder => 'Confirm password', data: {field: 'password_confirmation' } %>
+          </div>
+
+          <div class="controls">
+            <label>First Name</label> <%= f.text_field :first_name, :placeholder => 'First Name' %>
+          </div>
+          <div class="controls">
+            <label>Last Name</label><%= f.text_field :last_name, :placeholder => 'Last Name' %>
+          </div>
+          <div class="controls">
+            <label>Email</label><%= f.text_field :email, :placeholder => 'Email', :class => 'text_field email_field', data: {field: 'email'} %>
+          </div>
+          <div class="controls">
+            <label>Event Date</label><%= f.fields_for :user_devices do |udf| %>
+              <%= udf.select :event_isopt_id, EventIsopt.where(is_resettable: false).map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
+            <% end %>
+          </div>
+
+        </div>
+        <div class="form-actions">
+        <%= submit_tag "Register", :class => 'btn btn-primar' %>
+
+        </div>
+        <% end %>
+      </div>
+    </div><!-- end login-->
+
+  
+
+
+
+    <%= render '/layouts/footer' %>
+
+  </div>
 
 </div>
-<% end %>
-
-<%= form_for @user, :class => 'form-horizontal' do |f|  %>   
-  <div>
-    <%= f.text_field :username, :placeholder => 'Username' %>
-  </div>
-  <div>
-    <%= f.password_field :password, :placeholder => 'Password', data: {field: 'password'} %>
-  </div>
-  <div>
-    <%= f.password_field :password_confirmation, :placeholder => 'Confirm password', data: {field: 'password_confirmation' } %>
-  </div>
-
-  <div>
-    <%= f.text_field :first_name, :placeholder => 'First Name' %>
-  </div>
-  <div>
-    <%= f.text_field :last_name, :placeholder => 'Last Name' %>
-  </div>
-  <div>
-    <%= f.text_field :email, :placeholder => 'Email', :class => 'text_field email_field', data: {field: 'email'} %>
-  </div>
-  
-  <%= f.fields_for :user_devices do |udf| %>
-    <div>
-      <%= udf.select :event_isopt_id, EventIsopt.where(is_resettable: false).map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
-    </div>
-  <% end %>
-
-  <%= submit_tag "CREATE ACCOUNT", :class => 'btn' %>
-<% end %>

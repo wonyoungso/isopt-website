@@ -21,6 +21,8 @@ Rails.application.routes.draw do
         post 'press_btn'
       end
     end
+
+    resources :event_isopts
   end
 
   namespace :admin do 
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
         post 'ended' 
         get 'devices_table'
         post 'reset'
+        post 'publish'
+        post 'unpublish'
       end
     end
      
@@ -62,6 +66,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :event_isopts
 
   
   root 'welcome#index'

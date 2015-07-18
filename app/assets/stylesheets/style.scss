@@ -480,10 +480,19 @@ a.pagination-item:hover {
   border-top:1px solid #252525;
   padding: 2em 0;
   font-size:0.9em;
+
+
 }
+
+
 
 .footer a{
   color: #303030;
+}
+
+
+a.logout_btn {
+  color: #FF0000;
 }
 
 .elsewhere a {
@@ -598,6 +607,7 @@ img.logo {
   border-radius: 2px;
   background-color:#000;
   color:#fff;
+  font-family: 'San Francisco Display';
 }
 
 .username {
@@ -785,5 +795,8 @@ ul.participants a {
   img.logo {
     margin-bottom:2em;
     width:250px;
+  }
+  .overlay {
+    display:none;
   }
 }

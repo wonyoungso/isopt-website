@@ -1,19 +1,4 @@
-<div class="overlay">
-  <%= image_tag_with_at2x "img1.png", id: "drawing-1", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img2.png", id: "drawing-2", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img3.png", id: "drawing-3", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img4.png", id: "drawing-4", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img5.png", id: "drawing-5", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img6.png", id: "drawing-6", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-  <%= image_tag_with_at2x "img7.png", id: "drawing-7", class: "drawings",  data: {"0": "margin-top:0px", "end": "margin-top:-1000px;" } %>
-</div>
 <div class="container content tk-adobe-text-pro" id="skrollr-body">
-  <div class="masthead">
-    <h3 class="masthead-title">
-      <%= link_to 'Circle of Moment Measurement', root_path, title: 'Home' %>
-    </h3>
-    <!--<h4>I &mdash; S &mdash; O &mdash; P &mdash; T</h4>-->
-  </div>
       <div class="login">
         <div class="column">
           <%= image_tag_with_at2x "cmm.png", class: "logo" %>
@@ -25,15 +10,25 @@
           <div class="controls">
             <%= text_field_tag :email, '', :placeholder => 'Email Address' %>
           </div> 
-
           </div>
+           <% if @valid_data.present? and @valid_data[:type] == 'Email' %>
+            <div class="valid_error" id="email_error">
+              <%= @valid_data[:message] %>
+            </div>
+          <% end %>
+         
 
           <div class="control-group">
           <div class="controls">
             <%= password_field_tag :password, '', :placeholder => 'Password' %>
           </div>
+       
           </div>
-
+             <% if @valid_data.present? and @valid_data[:type] == 'Password' %>
+            <div class="valid_error" id="pw_error">
+              <%= @valid_data[:message] %>
+            </div>
+          <% end %>
           <div class="form-actions">
             <%= submit_tag "Time Travellers Sign in", :class => 'btn btn-primary' %>
           </div>
@@ -59,27 +54,19 @@
         <div class="column">
           <h3>Personal Times (PRST)</h3>
           <ul class="participants">
-            <li><a href="#">Berton Hasebe</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Hyo Kwon</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Kyle McDonald</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Lauren McCarthy</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Taeyoon Choi</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">E Roon Kang</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Jon Moeller</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Joel Ferree</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Amy Heibel</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Berton Hasebe</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Hyo Kwon</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Kyle McDonald</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Lauren McCarthy</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">Taeyoon Choi</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <% @users.each do |user| %>
+            <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= user.personal_current_time.strftime("%l:%M%P") %></span></li>
+            <% end %>
           </ul>
         </div>
         <div class="column">
           <h3>Consensus Times (CNST)</h3>
           <ul class="participants">
-            <li><a href="#">The First Consensus Time</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
-            <li><a href="#">The Second Consensus Time</a> <span class="label"> — living 9/23/2015, 09:34pm</span></li>
+            <% @event_isopts.each do |event_isopt| %>
+              <li>
+                <%= link_to event_isopt.title, event_isopt_path(event_isopt) %> <span class="label"> — living 9/23/2015, 09:34pm</span>
+              </li>
+            <% end %>
           </ul>
         </div>
         <div class="clear"></div>
@@ -87,11 +74,7 @@
 
 
 
-      <div class="footer">
-      <p><a href="i-s-o-p-t.com" target="_blank"><i>In Search of Personalized Time</i></a>, a project by <a href="http://taeyoonchoi.com" target="_blank">Taeyoon Choi</a> & <a href="http://eroonkang.com" target="_blank">E Roon Kang</a>.<br>
-        2014–2015, Art + Technology Project, <a href="http://www.lacma.org/LAB" target="_blank">Los Angeles County Museum of Art</a></p>
-      <!--<p class="elsewhere"><em>Project Website: <a href="http://i-s-o-p-t.com/" target="_blank">i-s-o-p-t.com</a></em></p>-->
-    </div>
+      <%= render '/layouts/footer' %>
 
     </div>
 

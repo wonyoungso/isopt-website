@@ -5,11 +5,27 @@ class EventIsopt < ActiveRecord::Base
   has_many :devices, :through => :user_devices, :source => :device
 
   def conv_to_json
-    {
+    json = {
       id: self.id,
       held_at: self.held_at.try("strftime", "%Y/%m/%d"),
-      venue_name: self.venue_name
+      venue_name: self.venue_name,
+      title: self.title,
+      tz_offset: self.tz_offset
     }
+
+    
+    json[:users] = []
+
+    self.users.each do |user|
+      user_json = {
+        personal_time: user.personal_time,
+        fullname: user.fullname
+      }
+
+      json[:users] << user_json
+    end
+
+    json
   end
 
   def self.no_other_event_running?

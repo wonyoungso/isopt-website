@@ -1,10 +1,14 @@
 WY.views.user_show_view = (function(){
   var user_id, 
       press_time = 0,
-      interval_id;
+      interval_id,
+      moment_records,
+      minutes;
 
   function user_show_view(params){
     user_id = params.user_id;
+    moment_records = params.moment_records;
+    minutes = params.minutes;
 
     $(".moment_btn").on("mousedown touchstart", function(e){
       interval_id = setInterval(function(){
@@ -21,6 +25,22 @@ WY.views.user_show_view = (function(){
         press_time = 0;
       }
     });
+
+    init_graph();
+  }
+
+  function init_graph(){
+    var pop_template = _.template('<div class="pop label"><%= start_time %> –<br><%= end_time %></div>');
+    
+    _.each(moment_records, function (mr) {
+      var bar = $($(".graph .bar:not(.on)")[Math.floor(mr.minute_idx)]);
+      bar.addClass("on").width(Math.max(10 * mr.milliseconds / 1000, 10)).append($(pop_template(mr)));
+
+      $(".graph .clear").remove();
+      $(".graph").append($("<div />", {"class": "bar"}));
+    });
+
+      $(".graph").append($("<div />", {"class": "clear"}));
   }
 
 

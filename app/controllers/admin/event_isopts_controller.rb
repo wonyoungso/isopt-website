@@ -3,6 +3,25 @@ class Admin::EventIsoptsController < Admin::AdminController
     @event_isopts = EventIsopt.order('held_at DESC')
   end
 
+  def publish
+  
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_published = true
+    @event_isopt.save
+
+    redirect_to request.referer, :notice => 'Successfully Published'
+  end
+
+  def unpublish
+
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_published = false
+    @event_isopt.save
+
+    redirect_to request.referer, :notice => 'Successfully Unpublished'
+  end
+
+
   def reset
     @event_isopt = EventIsopt.find params[:id]
     @event_isopt.started_at = nil#DateTime.now
@@ -72,7 +91,7 @@ class Admin::EventIsoptsController < Admin::AdminController
   end
 
   def create
-    @event_isopt = EventIsopt.new(params.require(:event_isopt).permit(:held_at, :venue_name, :tz_offset))
+    @event_isopt = EventIsopt.new(params.require(:event_isopt).permit(:title, :held_at, :venue_name, :tz_offset))
 
     if @event_isopt.save
       redirect_to edit_admin_event_isopt_path(@event_isopt), :notice => 'Successfully created Event.'
@@ -84,7 +103,7 @@ class Admin::EventIsoptsController < Admin::AdminController
   def update
     @event_isopt = EventIsopt.find params[:id]
 
-    if @event_isopt.update_attributes(params.require(:event_isopt).permit(:held_at, :venue_name, :tz_offset))
+    if @event_isopt.update_attributes(params.require(:event_isopt).permit(:title, :held_at, :venue_name, :tz_offset))
       redirect_to edit_admin_event_isopt_path(@event_isopt), :notice => 'Successfully Updated Event.'
     else
       render :edit
