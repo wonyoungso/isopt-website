@@ -28,6 +28,14 @@ class EventIsopt < ActiveRecord::Base
     json
   end
 
+  def tz_offset_in_hour
+    self.tz_offset.gsub("0", "").to_i.hour
+  end
+
+  def consensus_time
+    
+  end
+
   def self.no_other_event_running?
     EventIsopt.where(is_activated: true, is_ended: false).count == 0
   end

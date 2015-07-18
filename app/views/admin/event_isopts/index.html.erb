@@ -10,7 +10,9 @@
     <th>
       Event Date
     </th>
-
+    <th>
+      Title
+    </th>
     <th>
       Event Venue
     </th>
@@ -35,7 +37,9 @@
         <%= event_isopt.held_at.try("strftime", "%Y/%m/%d") %>
       <% end %>
     </td>
-
+    <td>
+      <%= event_isopt.title %>
+    </td>
     <td>
       <%= event_isopt.venue_name %> 
     </td>
