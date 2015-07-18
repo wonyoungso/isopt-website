@@ -11,7 +11,7 @@ class MomentRecord < ActiveRecord::Base
     }
 
     json[:start_time] =  self.submitted_at.strftime("%l:%M%P")
-    json[:end_time] = (self.submitted_at + (self.milliseconds.to_f / 1000).second).strftime("%l:%M%P")
+    json[:end_time] = (self.submitted_at + (self.milliseconds.to_f / 1000).to_i.second).strftime("%l:%M%P")
 
     json[:minute_idx] = TimeDifference.between(self.submitted_at, self.user.init_at).in_minutes if self.user.is_initialized?
     json
