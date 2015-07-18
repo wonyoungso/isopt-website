@@ -3,7 +3,7 @@
       <h2>The <%= @event_isopt.title %> of:</h2>
       <ul class="participants">
         <% @event_isopt.users.each do |user| %>
-        <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= user.personal_current_time.strftime("%l:%M%P") %></span></li>
+        <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
         <% end %>
       </ul>
       <div class="clear"></div>
@@ -12,12 +12,12 @@
     <% if @event_isopt.consensus_time_code.present? %>
     <div class="user">
       <!--<p class="username"><i>is currently</i></p>-->
-      <p class="time">09<span class="colon">:</span>34pm
-      <p class="date">9/23/2015, CNST<a href="#sup1"><sup>[1]</sup></a></p>
+      <p class="time"><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%l") %><span class="colon">:</span><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%M%P") %>
+      <p class="date"><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, CNST<a href="#sup1"><sup>[1]</sup></a></p>
 
     <hr>
 
-      <p>This Consensus Time is agreed by all participants above, calculated on the basis of tha participant's recorded Personal Times on the afternoon of <%= @event_isopt.held_at.strftime("%m/%d/%Y") %> PST at the <%= @event_isopt.venue_name %> as a part of <%= link_to 'Circle of Moment Measurement', root_path %> workshop and discussion.</p>
+      <p>This Consensus Time is agreed by all participants above, calculated on the basis of tha participant's recorded Personal Times on the afternoon of <%= (@event_isopt.held_at + @event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %> PST at the <%= @event_isopt.venue_name %> as a part of <%= link_to 'Circle of Moment Measurement', root_path %> workshop and discussion.</p>
 
       <p>As a result of a roundtable discussion, the party has negotiated the following formula to create Consensus Time.</p>
       
@@ -25,7 +25,7 @@
         <%= @event_isopt.consensus_time_code %>
       </p>
 
-      <p>This consensus time is being broadcasted through NTP<a href="#sup1"><sup>[2]</sup></a> at <a href="#">123.456.789</a>. Further information on how to utilize this time can be found <a href="#">here</a>.</p>
+      <p>This consensus time is being broadcasted through NTP<a href="#sup1"><sup>[2]</sup></a> at <a href="#">52.7.199.246</a>. Further information on how to utilize this time can be found <a href="#">here</a>.</p>
 
     </div><!-- end prst-->
     <hr>

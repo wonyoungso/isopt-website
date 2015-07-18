@@ -33,7 +33,16 @@ class EventIsopt < ActiveRecord::Base
   end
 
   def consensus_time
-    
+    begin
+      ct = eval(self.consensus_time_code)
+      if ct.class.name == "Time"
+        ct
+      else
+        Time.now
+      end
+    rescue
+      Time.now
+    end
   end
 
   def self.no_other_event_running?
