@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
       flash[:notice] = 'Successfully updated password.'
-      redirect_to edit_username_path(@user.username)
+      redirect_to user_path(@user.username)
       return
     else
       render 'edit'  
