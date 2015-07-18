@@ -46,7 +46,7 @@ class Admin::UsersController < Admin::AdminController
     @user = User.new(params.require(:user).permit(:email, :first_name, :last_name, :username, :password, :password_confirmation, user_devices_attributes: [:event_isopt_id, :user_id]))
 
     if @user.save
-      redirect_to edit_admin_user_path(@user), :notice => 'Successfully Created.'
+      redirect_to edit_admin_username_path(@user.username), :notice => 'Successfully Created.'
     else  
       render '/admin/users/new'
     end

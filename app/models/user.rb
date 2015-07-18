@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
 
 
   validates :username, presence: {message: "Please enter a username"},
-                       uniqueness: {message: "This username already exists"}
+                       uniqueness: {message: "This username already exists"},
+                       exclusion: { in: %w(. ,), message: "No dots and commas." }
+
+
 
   validates :email, presence: {message: "Please enter an email address"},
                     uniqueness: {message: "This email address already exists"},

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         if params[:redirection].present?
           redirect_to params[:redirection], :notice => 'login successful'
         else 
-          redirect_to user_path(@user), :notice => 'login successful'
+          redirect_to username_path(@user.username), :notice => 'login successful'
         end
       else
         @valid_data = {

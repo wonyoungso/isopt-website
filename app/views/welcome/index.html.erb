@@ -1,83 +1,82 @@
-<div class="container content tk-adobe-text-pro" id="skrollr-body">
-      <div class="login">
-        <div class="column">
-          <%= image_tag_with_at2x "cmm.png", class: "logo" %>
-        </div>
-        <div class="column cmm-login">
-
-          <%= form_tag login_path, :class => 'form-horizontal', :id => 'login_form' do %>
-          <div class="control-groups">
-          <div class="controls">
-            <%= text_field_tag :email, '', :placeholder => 'Email Address' %>
-          </div> 
-          </div>
-           <% if @valid_data.present? and @valid_data[:type] == 'Email' %>
-            <div class="valid_error" id="email_error">
-              <%= @valid_data[:message] %>
-            </div>
-          <% end %>
-         
-
-          <div class="control-group">
-          <div class="controls">
-            <%= password_field_tag :password, '', :placeholder => 'Password' %>
-          </div>
-       
-          </div>
-             <% if @valid_data.present? and @valid_data[:type] == 'Password' %>
-            <div class="valid_error" id="pw_error">
-              <%= @valid_data[:message] %>
-            </div>
-          <% end %>
-          <div class="form-actions">
-            <%= submit_tag "Time Travellers Sign in", :class => 'btn btn-primary' %>
-          </div>
-          <% end %>
-        </div>
-        <div class="clear"></div>
-      </div><!-- end login-->
-
-      <hr>
-
-      <p>What is time really?  As humanity, we collectively agree on using Universal Time as a standard to keep things in order in an increasingly synchronized and complex society. However, is it the only way to measure your time on this earth? What if we re-design time based off of your perception of moments?</p>
-      <p><a href="http://i-s-o-p-t.com/2015/06/20/CircleofMomentMeasurement/">Read More...</a></p>
-
-      <!--
-      <p>By being part of the Circle of Moment Measurement, you will collectively agree to all live by different times. Everyone in this participatory performance will discover their own personalized speed of time that is kept in portable and networked timekeeping devices, designed by the artists with support of LACMA Art + Technology Lab.</p>
-
-      <p>In this participatory performance, there will be a chance to experience the public spaces in LACMA in your own time. After that a conversation about how the new forms of time measurement would affect life would follow, as well as a opportunity to share the experience with the world.</p>
-
-      <p>This is a half-day event, led by the artists, requires about a four-hour time commitment. The afternoon concludes with video interviews documenting the experience and a group discussion about how alternative time measurement might affect daily life.</p>
-    -->
-      <hr class="dark">
-      <div>
-        <div class="column">
-          <h3>Personal Times (PRST)</h3>
-          <ul class="participants">
-            <% @users.each do |user| %>
-            <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="column">
-          <h3>Consensus Times (CNST)</h3>
-          <ul class="participants">
-            <% @event_isopts.each do |event_isopt| %>
-              <li>
-                <%= link_to event_isopt.title, event_isopt_path(event_isopt) %>
-              <% if event_isopt.consensus_time_code.present? %> <span class="label"> — living 9/23/2015, 09:34pm</span>
-              <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="clear"></div>
-      </div>
-
-
-
-      <%= render '/layouts/footer' %>
-
+<div class="container content tk-adobe-text-pro">
+  <div class="login">
+    <div class="column">
+      <%= image_tag_with_at2x "cmm.png", class: "logo" %>
     </div>
+    <div class="column cmm-login">
 
+      <%= form_tag login_path, :class => 'form-horizontal', :id => 'login_form' do %>
+      <div class="control-groups">
+      <div class="controls">
+        <%= text_field_tag :email, '', :placeholder => 'Email Address' %>
+      </div> 
+      </div>
+       <% if @valid_data.present? and @valid_data[:type] == 'Email' %>
+        <div class="valid_error" id="email_error">
+          <%= @valid_data[:message] %>
+        </div>
+      <% end %>
+     
+
+      <div class="control-group">
+      <div class="controls">
+        <%= password_field_tag :password, '', :placeholder => 'Password' %>
+      </div>
+   
+      </div>
+         <% if @valid_data.present? and @valid_data[:type] == 'Password' %>
+        <div class="valid_error" id="pw_error">
+          <%= @valid_data[:message] %>
+        </div>
+      <% end %>
+      <div class="form-actions">
+        <%= submit_tag "Time Travellers Sign in", :class => 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+    <div class="clear"></div>
+  </div><!-- end login-->
+
+  <hr>
+
+  <p>What is time really?  As humanity, we collectively agree on using Universal Time as a standard to keep things in order in an increasingly synchronized and complex society. However, is it the only way to measure your time on this earth? What if we re-design time based off of your perception of moments?</p>
+  <p><a href="http://i-s-o-p-t.com/2015/06/20/CircleofMomentMeasurement/">Read More...</a></p>
+
+  <!--
+  <p>By being part of the Circle of Moment Measurement, you will collectively agree to all live by different times. Everyone in this participatory performance will discover their own personalized speed of time that is kept in portable and networked timekeeping devices, designed by the artists with support of LACMA Art + Technology Lab.</p>
+
+  <p>In this participatory performance, there will be a chance to experience the public spaces in LACMA in your own time. After that a conversation about how the new forms of time measurement would affect life would follow, as well as a opportunity to share the experience with the world.</p>
+
+  <p>This is a half-day event, led by the artists, requires about a four-hour time commitment. The afternoon concludes with video interviews documenting the experience and a group discussion about how alternative time measurement might affect daily life.</p>
+  -->
+  <hr class="dark">
+  <div>
+    <div class="column">
+      <h3>Personal Times (PRST)</h3>
+      <ul class="participants">
+        <% @users.each do |user| %>
+        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Consensus Times (CNST)</h3>
+      <ul class="participants">
+        <% @event_isopts.each do |event_isopt| %>
+          <li>
+            <%= link_to event_isopt.title, event_isopt_path(event_isopt) %>
+            <% if event_isopt.consensus_time_code.present? %> 
+              <span class="label"><span class="label"> — living <%= (event_isopt.consensus_time + event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, <%= (event_isopt.consensus_time + event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></span>
+            <% else %>
+              <span class="label"></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="clear"></div>
   </div>
+
+  <%= render '/layouts/footer' %>
+
+</div>

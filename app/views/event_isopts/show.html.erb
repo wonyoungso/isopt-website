@@ -1,9 +1,9 @@
-<div class="container content tk-adobe-text-pro" id="skrollr-body">
-    <div class="others">
+<div class="container content tk-adobe-text-pro">
+  <div class="others">
       <h2>The <%= @event_isopt.title %> of:</h2>
       <ul class="participants">
         <% @event_isopt.users.each do |user| %>
-        <li><%= link_to user.fullname, user_path(user) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
+        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
         <% end %>
       </ul>
       <div class="clear"></div>

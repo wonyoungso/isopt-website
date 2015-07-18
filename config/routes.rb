@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   match 'login' => 'sessions#create', :via => :post
   match 'logout' => 'sessions#destroy', :via => :get
   match 'logout' => 'sessions#destroy', :via => :delete
-
+  match '/:username' => 'users#show', :via => :get, :as => 'username'
 
 
 

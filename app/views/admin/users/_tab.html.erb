@@ -11,7 +11,7 @@
   
   <% if @user.present? and not @user.new_record? %>
   <li class="active">
-    <%= link_to "#{@user.fullname}", edit_admin_user_path(@user) %>
+    <%= link_to "#{@user.fullname}", edit_admin_username_path(@user.username) %>
   </li>
   <% end %>
 </ul>

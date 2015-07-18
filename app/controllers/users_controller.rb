@@ -8,17 +8,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.where(username: params[:username]).first
 
+    if @user.present?
+      if @user.is_initialized? and @user.current_event_isopt.present?
+        @minutes = TimeDifference.between(@user.init_at, Time.now).in_minutes
 
-    if @user.is_initialized? and @user.current_event_isopt.present?
-      @minutes = TimeDifference.between(@user.init_at, Time.now).in_minutes
-
-      render :template => '/users/show'
+        render :template => '/users/show'
+      else
+        render :template => '/users/not_ready'
+      end
     else
-      render :template => '/users/not_ready'
+      render text: 'No such user.'
     end
-
   end
 
   def edit
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params.require(:user).permit(:password, :password_confirmation))
       flash[:notice] = 'Successfully updated password.'
-      redirect_to edit_user_path(@user)
+      redirect_to edit_username_path(@user.username)
       return
     else
       render 'edit'  
