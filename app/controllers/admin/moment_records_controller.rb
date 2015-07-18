@@ -18,6 +18,14 @@ class Admin::MomentRecordsController < Admin::AdminController
     end
   end
 
+  def destroy
+    @moment_record = MomentRecord.find params[:id]
+    
+    @moment_record.destroy
+
+    redirect_to referer, :notice => 'successfully destroyed.'
+  end
+
   private
 
   def find_user
