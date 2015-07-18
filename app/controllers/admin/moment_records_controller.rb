@@ -23,7 +23,7 @@ class Admin::MomentRecordsController < Admin::AdminController
     
     @moment_record.destroy
 
-    redirect_to referer, :notice => 'successfully destroyed.'
+    redirect_to request.referer, :notice => 'successfully destroyed.'
   end
 
   private
