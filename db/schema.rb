@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718001058) do
+ActiveRecord::Schema.define(version: 20150718155208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,16 +26,17 @@ ActiveRecord::Schema.define(version: 20150718001058) do
   create_table "event_isopts", force: :cascade do |t|
     t.datetime "held_at"
     t.string   "venue_name"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "is_activated",  default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "is_activated",        default: false
     t.datetime "started_at"
     t.datetime "ended_at"
     t.boolean  "is_ended"
-    t.string   "tz_offset",     default: "-0500"
-    t.boolean  "is_resettable", default: true
+    t.string   "tz_offset",           default: "-0500"
+    t.boolean  "is_resettable",       default: true
     t.string   "title"
-    t.boolean  "is_published",  default: false
+    t.boolean  "is_published",        default: false
+    t.text     "consensus_time_code"
   end
 
   create_table "moment_records", force: :cascade do |t|

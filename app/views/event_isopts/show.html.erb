@@ -9,6 +9,7 @@
       <div class="clear"></div>
   </div>
   <hr>
+    <% if @event_isopt.consensus_time_code.present? %>
     <div class="user">
       <!--<p class="username"><i>is currently</i></p>-->
       <p class="time">09<span class="colon">:</span>34pm
@@ -20,11 +21,14 @@
 
       <p>As a result of a roundtable discussion, the party has negotiated the following formula to create Consensus Time.</p>
       
-      <p class="label formula">The formula goes here, if possible</p>
+      <p class="label formula">
+        <%= @event_isopt.consensus_time_code %>
+      </p>
 
       <p>This consensus time is being broadcasted through NTP<a href="#sup1"><sup>[2]</sup></a> at <a href="#">123.456.789</a>. Further information on how to utilize this time can be found <a href="#">here</a>.</p>
 
     </div><!-- end prst-->
+    <% end %>
     <hr>
     <div class="footnote">
       <ul>
