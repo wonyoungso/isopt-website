@@ -17,7 +17,7 @@
 
     <hr>
 
-      <p>This Consensus Time is agreed by all participants above, calculated on the basis of tha participant's recorded Personal Times on the afternoon of <%= (@event_isopt.held_at + @event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %> PST at the <%= @event_isopt.venue_name %> as a part of <%= link_to 'Circle of Moment Measurement', root_path %> workshop and discussion.</p>
+      <p>This Consensus Time is agreed by all participants above, calculated on the basis of tha participant's recorded Personal Times on the afternoon of <%= @event_isopt.held_at_offset.strftime("%m/%d/%Y") %> PST at the <%= @event_isopt.venue_name %> as a part of <%= link_to 'Circle of Moment Measurement', root_path %> workshop and discussion.</p>
 
       <p>As a result of a roundtable discussion, the party has negotiated the following formula to create Consensus Time.</p>
       

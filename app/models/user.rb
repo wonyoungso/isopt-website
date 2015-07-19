@@ -43,8 +43,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def init_at_offset
+    tz = self.current_event_isopt.tz_offset
+    self.init_at.getlocal(tz[0..-3]+":"+tz[-2..-1])
+  end
+
+
   def offset_added_prst
-    (self.personal_time.gmtime + self.current_event_isopt.tz_offset_in_hour).gmtime
+    tz = self.current_event_isopt.tz_offset
+    self.personal_time.getlocal(tz[0..-3]+":"+tz[-2..-1])
+    # (self.personal_time. + self.current_event_isopt.tz_offset_in_hour).gmtime
   end
 
 

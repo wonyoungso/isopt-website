@@ -29,8 +29,18 @@ class EventIsopt < ActiveRecord::Base
   end
 
   def offset_added_cst
-    (self.consensus_time.gmtime + self.tz_offset_in_hour).gmtime
+    tz = self.tz_offset
+    self.consensus_time.getlocal(tz[0..-3]+":"+tz[-2..-1])
+  end
 
+  def started_at_offset
+    tz = self.tz_offset
+    self.started_at.getlocal(tz[0..-3]+":"+tz[-2..-1])
+  end
+
+  def held_at_offset
+    tz = self.tz_offset
+    self.held_at.getlocal(tz[0..-3]+":"+tz[-2..-1])
   end
 
   def tz_offset_in_hour
