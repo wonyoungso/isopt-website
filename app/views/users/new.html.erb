@@ -39,7 +39,7 @@
           </div>
           <div class="controls">
             <label>Event Date</label><%= f.fields_for :user_devices do |udf| %>
-              <%= udf.select :event_isopt_id, EventIsopt.where(is_resettable: false).map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
+              <%= udf.select :event_isopt_id, EventIsopt.where(is_resettable: false, is_ended: false).map {|ev| [ev.held_at.try('strftime', '%Y/%m/%d'), ev.id]} %>
             <% end %>
           </div>
 
