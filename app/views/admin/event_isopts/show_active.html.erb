@@ -49,7 +49,7 @@
             <td data-device-id="<%= device.id %>">
               <% user_device = UserDevice.where(device_id: device.id, event_isopt_id: @event_isopt.id).first %>
               <% if user_device.present? and user_device.user.present? %>
-                <%= link_to user_device.user.fullname, user_path(user_device.user), target: "_blank" %>
+                <%= link_to user_device.user.fullname, username_path(user_device.user.username), target: "_blank" %>
               <% else %>
                 <span style='color:#AAA'>*deactivated</span>
               <% end %>

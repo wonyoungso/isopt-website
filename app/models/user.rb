@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   def init_at_offset
     tz = self.current_event_isopt.tz_offset
     self.init_at.getlocal(tz[0..-3]+":"+tz[-2..-1])
+    # byebug
   end
 
 

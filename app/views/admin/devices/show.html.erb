@@ -29,7 +29,7 @@
       Event Logs
     </h4>
     <div style="margin-left:30px">
-      <% @device.user_devices.each do |user_device| %>
+      <% @device.user_devices.order('created_at DESC').each do |user_device| %>
         <%= render partial: '/admin/devices/render_log', locals: {user_device: user_device} %>
       <% end %>
     </div>
