@@ -50,9 +50,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:email, :first_name, :last_name, :username, :password, :password_confirmation, user_devices_attributes: [:event_isopt_id, :user_id]))
 
-    if @user.save
-      session[:user_id] = @user.id
-    else  
+    unless @user.save
+    # else  
       render :new
     end
   end
