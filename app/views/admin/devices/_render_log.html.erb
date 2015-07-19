@@ -1,6 +1,6 @@
 
 <h4>
-  Event:  <%= user_device.event_isopt.held_at.strftime("%Y/%m/%d %H:%M") %> <%= user_device.event_isopt.venue_name %>, User: <%= user_device.user.fullname %>
+  Event:  <%= user_device.event_isopt.held_at_offset.strftime("%Y/%m/%d %H:%M") %> <%= user_device.event_isopt.venue_name %>, User: <%= user_device.user.fullname %>
 </h4>
 <table class="table table-striped">
   <thead>
@@ -17,7 +17,7 @@
     <% user_device.user_device_logs.order('created_at DESC').each do |log| %>
       <tr>
         <td>
-          <%= log.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+          <%= log.created_at.to_time.getlocal("-0700"[0..-3]+":"+"-0700"[-2..-1]).strftime("%Y/%m/%d %H:%M:%S") %>
         </td>
         <td>
           <%= log.description %>
