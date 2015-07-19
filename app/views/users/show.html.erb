@@ -1,12 +1,12 @@
 <div class="container content tk-adobe-text-pro">
   <div class="user">
     <p class="username"><span class="fullname"><%= @user.fullname %></span> is currently living</p>
-    <p class="time"><%= (@user.personal_current_time + @user.current_event_isopt.tz_offset_in_hour).strftime("%l") %><span class="colon">:</span><%= (@user.personal_current_time + @user.current_event_isopt.tz_offset_in_hour).strftime("%M%P") %>
-    <p class="date"><%= (@user.personal_current_time + @user.current_event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, PRST<a href="#sup1"><sup>[1]</sup></a></p>
+    <p class="time"><%= @user.offset_added_prst.strftime("%l") %><span class="colon">:</span><%= @user.offset_added_prst.strftime("%M%P") %>
+    <p class="date"><%= @user.offset_added_prst.strftime("%m/%d/%Y") %>, PRST<a href="#sup1"><sup>[1]</sup></a></p>
 
     <hr>
 
-    <p><span class="fullname"><%= @user.fullname %></span>&rsquo;s Personalized Time (PRST) is intialized as of <%= @user.init_at.strftime("%m/%d/%Y") %>, <%= (@user.init_at + @user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %> PST<a href="#sup2"><sup>[2]</sup></a></sup>. <span class="fullname"><%= @user.first_name %></span> is a contributing member of the <%= link_to @user.current_event_isopt.title, event_isopt_path(@user.current_event_isopt) %> (CNST)<a href="#sup3"><sup>[3]</sup></a></sup>, created on <%= (@user.current_event_isopt.started_at + @user.current_event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %> PST at <%= @user.current_event_isopt.venue_name %>.</p>
+    <p><span class="fullname"><%= @user.fullname %></span>&rsquo;s Personalized Time (PRST) is intialized as of <%= (@user.init_at.to_time.gmtime + @user.current_event_isopt.tz_offset_in_hour).gmtime.strftime("%m/%d/%Y") %>, <%= (@user.init_at.to_time.gmtime + @user.current_event_isopt.tz_offset_in_hour).gmtime.strftime("%l:%M%P") %> PST<a href="#sup2"><sup>[2]</sup></a></sup>. <span class="fullname"><%= @user.first_name %></span> is a contributing member of the <%= link_to @user.current_event_isopt.title, event_isopt_path(@user.current_event_isopt) %> (CNST)<a href="#sup3"><sup>[3]</sup></a></sup>, created on <%= (@user.current_event_isopt.started_at + @user.current_event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %> PST at <%= @user.current_event_isopt.venue_name %>.</p>
     <div class="measure-btn">
       <% if logged_in? and @user == current_user %>
         <%= link_to "Press & Hold to Add Moments", 'javascript:void(0);', class: 'moment_btn btn btn-primary' %>       

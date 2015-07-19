@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def offset_added_prst
+    (self.personal_time.gmtime + self.current_event_isopt.tz_offset_in_hour).gmtime
+  end
+
 
   def conv_to_json
     {

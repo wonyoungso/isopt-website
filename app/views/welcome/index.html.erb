@@ -55,7 +55,7 @@
       <h3>Personal Times (PRST)</h3>
       <ul class="participants">
         <% @users.each do |user| %>
-        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
+        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= user.personal_current_time.strftime("%m/%d/%Y") %>, <%= user.offset_added_prst.strftime("%l:%M%P") %></span></li>
         <% end %>
       </ul>
     </div>
@@ -66,7 +66,7 @@
           <li>
             <%= link_to event_isopt.title, event_isopt_path(event_isopt) %>
             <% if event_isopt.consensus_time_code.present? %> 
-              <span class="label"><span class="label"> — living <%= (event_isopt.consensus_time + event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, <%= (event_isopt.consensus_time + event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></span>
+              <span class="label"><span class="label"> — living <%= event_isopt.offset_added_cst.strftime("%m/%d/%Y") %>, <%= event_isopt.offset_added_cst.strftime("%l:%M%P") %></span></span>
             <% else %>
               <span class="label"></span>
             <% end %>

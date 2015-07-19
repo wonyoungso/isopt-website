@@ -3,7 +3,7 @@
       <h2>The <%= @event_isopt.title %> of:</h2>
       <ul class="participants">
         <% @event_isopt.users.each do |user| %>
-        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, <%= (user.personal_current_time + user.current_event_isopt.tz_offset_in_hour).strftime("%l:%M%P") %></span></li>
+        <li><%= link_to user.fullname, username_path(user.username) %> <span class="label"> — living <%= user.offset_added_prst.strftime("%m/%d/%Y") %>, <%= user.offset_added_prst.strftime("%l:%M%P") %></span></li>
         <% end %>
       </ul>
       <div class="clear"></div>
@@ -12,8 +12,8 @@
     <% if @event_isopt.consensus_time_code.present? %>
     <div class="user">
       <!--<p class="username"><i>is currently</i></p>-->
-      <p class="time"><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%l") %><span class="colon">:</span><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%M%P") %>
-      <p class="date"><%= (@event_isopt.consensus_time + @event_isopt.tz_offset_in_hour).strftime("%m/%d/%Y") %>, CNST<a href="#sup1"><sup>[1]</sup></a></p>
+      <p class="time"><%= @event_isopt.offset_added_cst.strftime("%l") %><span class="colon">:</span><%= @event_isopt.offset_added_cst.strftime("%M%P") %>
+      <p class="date"><%= @event_isopt.offset_added_cst.strftime("%m/%d/%Y") %>, CNST<a href="#sup1"><sup>[1]</sup></a></p>
 
     <hr>
 

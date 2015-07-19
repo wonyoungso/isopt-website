@@ -28,6 +28,11 @@ class EventIsopt < ActiveRecord::Base
     json
   end
 
+  def offset_added_cst
+    (self.consensus_time.gmtime + self.tz_offset_in_hour).gmtime
+
+  end
+
   def tz_offset_in_hour
     self.tz_offset.gsub("0", "").to_i.hour
   end
