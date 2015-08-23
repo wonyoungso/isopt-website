@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
     if @user.present?
       if @user.is_initialized? and @user.current_event_isopt.present?
-        @end_time = @user.current_event_isopt.is_ended? ? @user.current_event_isopt.ended_at : Time.now
-        @minutes = TimeDifference.between(@user.init_at, @end_time).in_minutes
+        # @end_time = @user.current_event_isopt.is_ended? ? @user.current_event_isopt.ended_at
+        @minutes = TimeDifference.between(@user.init_at, @user.current_event_isopt.ended_at).in_minutes
 
         render :template => '/users/show'
       else
