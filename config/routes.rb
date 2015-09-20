@@ -40,6 +40,8 @@ Rails.application.routes.draw do
         post 'reset'
         post 'publish'
         post 'unpublish'
+        post 'set_to_test'
+        post 'set_to_production'
       end
     end
      

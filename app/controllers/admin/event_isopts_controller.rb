@@ -21,6 +21,25 @@ class Admin::EventIsoptsController < Admin::AdminController
     redirect_to request.referer, :notice => 'Successfully Unpublished'
   end
 
+  def set_to_test
+  
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_resettable = true
+    @event_isopt.save
+
+    redirect_to request.referer, :notice => 'Successfully set to test mode'
+  end
+
+  def set_to_production
+  
+    @event_isopt = EventIsopt.find params[:id]
+    @event_isopt.is_resettable = false
+    @event_isopt.save
+
+    redirect_to request.referer, :notice => 'Successfully set to production mode'
+  end
+
+
 
   def reset
     @event_isopt = EventIsopt.find params[:id]

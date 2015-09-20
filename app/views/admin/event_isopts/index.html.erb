@@ -28,6 +28,10 @@
       Publish
     </th>
 
+    <th>
+      Production/Test
+    </th>
+
   </tr>
   <% @event_isopts.each do |event_isopt| %>
   <tr>
@@ -60,6 +64,15 @@
           Unpublished<br/>
           <%= link_to 'Publish', publish_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
         <% end %>
+      <% end %>
+    </td>
+    <td>
+      <% unless event_isopt.is_resettable? %>
+        Production<br/>
+        <%= link_to 'Set to Test', set_to_test_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
+      <% else %>
+        Test<br/>
+        <%= link_to 'Set to Production', set_to_production_admin_event_isopt_path(event_isopt), method: :post, confirm: 'are you sure?' %>
       <% end %>
     </td>
   </tr>
